@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Who Goes</string>
+    <string name="facebook_app_id">270779473413557</string>
+    <string name="fb_login_protocol_scheme">fb270779473413557</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_event">EventActivity</string>
+</resources>
