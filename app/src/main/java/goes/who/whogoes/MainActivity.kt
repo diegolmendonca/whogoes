@@ -9,22 +9,27 @@ import com.facebook.*
 import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult
 
+
 class MainActivity : AppCompatActivity() {
+
+    val TAG = MainActivity::class.java.name
 
     lateinit  var button : Button
     lateinit  var callbackManager : CallbackManager
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         FacebookSdk.sdkInitialize(applicationContext)
         setContentView(R.layout.activity_main)
+        MyApplication.graph.inject(this)
 
         button = findViewById(R.id.login_button)
         callbackManager = CallbackManager.Factory.create()
 
-       val accessToken = AccessToken.getCurrentAccessToken()
+        val accessToken = AccessToken.getCurrentAccessToken()
 
-       if (!accessToken.isExpired) {
+        if (!accessToken.isExpired) {
             val intent = Intent(applicationContext, EventActivity::class.java)
             intent.putExtra("FACEBOOK_TOKEN", accessToken.token);
             startActivity(intent)
@@ -52,9 +57,8 @@ class MainActivity : AppCompatActivity() {
                 }
             })
 
-       }
+        }
     }
-
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -62,6 +66,5 @@ class MainActivity : AppCompatActivity() {
     }
 
 }
-
 
 //https://github.com/betranthanh/android-kotlin-loginfacebook/blob/master/app/src/main/java/com/bett/kotlinloginfacebook/AuthenticatedActivity.kt

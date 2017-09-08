@@ -12,16 +12,18 @@ import goes.who.whogoes.R
 import goes.who.whogoes.model.Example
 import okhttp3.*
 import java.io.IOException
+import javax.inject.Inject
 
 class EventActivity : AppCompatActivity() {
 
-    lateinit  var client : OkHttpClient
+    @Inject
+    lateinit var httpClient: OkHttpClient
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_event)
+        MyApplication.graph.inject(this)
 
-        client = OkHttpClient()
 
         var token = intent.getStringExtra("FACEBOOK_TOKEN")
 
@@ -36,7 +38,7 @@ class EventActivity : AppCompatActivity() {
                 .build()
 
 
-        client.newCall(request).enqueue(object : Callback {
+        httpClient.newCall(request).enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {}
             override fun onResponse(call: Call, response: Response)  {
 
@@ -46,7 +48,6 @@ class EventActivity : AppCompatActivity() {
                 //     Rutha Monatan
                 val res =   topic.data.filter { x-> x.name.equals("Rutha Monatan") }
 
-                println(response.body()?.string())
             }
         })
     }
