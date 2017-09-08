@@ -9,16 +9,15 @@ import android.app.Application
 import android.content.Context
 import dagger.Module
 import dagger.Provides
+import goes.who.whogoes.service.HttpService
 import okhttp3.OkHttpClient
+import javax.inject.Named
 import javax.inject.Singleton
 
 
 @Module
 class AndroidModule(private val application: Application) {
 
-    /**
-     * Allow the application context to be injected but require that it be annotated with [ ][ForApplication] to explicitly differentiate it from an activity context.
-     */
     @Provides
     @Singleton
     fun provideApplicationContext(): Context {
@@ -33,5 +32,43 @@ class AndroidModule(private val application: Application) {
 
     }
 
+    @Provides
+    @Singleton
+    fun provideHttpService(): HttpService {
+        return  HttpService()
+    }
+
+
+    @Provides @Named("baseURI")
+    @Singleton
+    fun baseURI(): String {
+      //  return "https://graph.facebook.com/v2.10/1928591074051643/attending/?fields=name&limit=5000&access_token="
+
+        return "https://graph.facebook.com/v2.10/"
+    }
+
+    @Provides @Named("attending")
+    @Singleton
+    fun attending(): String {
+        return "attending/"
+    }
+
+    @Provides @Named("interested")
+    @Singleton
+    fun interested(): String {
+        return "interested/"
+    }
+
+    @Provides @Named("remainingURI")
+    @Singleton
+    fun remainingURI(): String {
+        return "?fields=name&limit=5000&access_token="
+    }
+
+    @Provides @Named("after")
+    @Singleton
+    fun after(): String {
+        return "?after="
+    }
 
 }

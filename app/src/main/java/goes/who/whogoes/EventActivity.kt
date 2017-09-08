@@ -7,49 +7,26 @@ package goes.who.whogoes
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import com.google.gson.Gson
-import goes.who.whogoes.R
-import goes.who.whogoes.model.Example
-import okhttp3.*
-import java.io.IOException
+import goes.who.whogoes.service.HttpService
+import goes.who.whogoes.service.MyInterface
 import javax.inject.Inject
 
 class EventActivity : AppCompatActivity() {
-
     @Inject
-    lateinit var httpClient: OkHttpClient
+    lateinit var httpService: HttpService
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_event)
         MyApplication.graph.inject(this)
 
-
         var token = intent.getStringExtra("FACEBOOK_TOKEN")
+        var eventId = "1928591074051643"
 
-        val URL = "https://graph.facebook.com/v2.10/1928591074051643/attending/?fields=name&limit=5000&access_token=$token"
+        httpService.run(token, eventId, "", MyInterface())
 
-        run(URL)
     }
 
-    fun run(url: String) {
-        val request = Request.Builder()
-                .url(url)
-                .build()
-
-
-        httpClient.newCall(request).enqueue(object : Callback {
-            override fun onFailure(call: Call, e: IOException) {}
-            override fun onResponse(call: Call, response: Response)  {
-
-                val jsonData = response.body()?.string()
-                val gson = Gson()
-                val topic = gson.fromJson(jsonData, Example::class.java)
-                //     Rutha Monatan
-                val res =   topic.data.filter { x-> x.name.equals("Rutha Monatan") }
-
-            }
-        })
-    }
 
 }
