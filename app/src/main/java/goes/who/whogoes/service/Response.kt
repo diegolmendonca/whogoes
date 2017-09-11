@@ -8,12 +8,12 @@ import goes.who.whogoes.model.Example
  */
 
 class MyInterface {
-     var res : List<Datum>? = listOf()
-     var after : String? = ""
+     var res : List<Datum> = listOf()
+     var after : String = ""
 
     fun setResponse(example: Example) {
         res = example.data.filter { x -> x.name.equals("Rutha Monatan") }
-        after = example.paging.cursors.after
+        after = example.paging.next
     }
 
    // fun getRes() : List<Datum> { return res }

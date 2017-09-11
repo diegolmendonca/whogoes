@@ -62,7 +62,7 @@ class AndroidModule(private val application: Application) {
     @Provides @Named("remainingURI")
     @Singleton
     fun remainingURI(): String {
-        return "?fields=name&limit=5000&access_token="
+        return "?fields=name&limit=500&access_token="
     }
 
     @Provides @Named("after")

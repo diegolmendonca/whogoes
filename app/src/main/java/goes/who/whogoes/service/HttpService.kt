@@ -31,31 +31,40 @@ class HttpService {
         MyApplication.graph.inject(this)
     }
 
-    fun run(token: String, eventId :String , afterToken:String?, response2: MyInterface ) : List<Datum> {
+    fun run(token: String, eventId :String , afterToken:String?, response2: MyInterface ) {
+        val base = baseURI + eventId + "/" + interested + remainingURI + token
         var url = ""
 
         if (afterToken.isNullOrEmpty()){
-             url = baseURI + eventId + "/" + attending + remainingURI + token
+             url = base
         } else {
-            url = baseURI + eventId + "/" + attending + remainingURI + token + after + afterToken
+            url = afterToken.toString()
 
         }
-        performCall(url,response2)
+        performCall(url,response2, token, eventId)
 
-        val firstIt = response2.res
-        val hasAfter = response2.after
-
-
-        if (hasAfter.isNotEmpty()) {
-            return firstIt + run(token, eventId, hasAfter, MyInterface())
-        }
-        else
-           return firstIt
     }
 
 
 
-    private fun performCall(url: String?,response2: MyInterface) {
+    private fun teste(response2: MyInterface, token: String, eventId :String, acc: List<Datum> ) : List<Datum>{
+
+        val firstIt = response2.res.plus(acc)
+        val hasAfter = response2.after
+
+
+        if (hasAfter.isNotEmpty()) {
+             run(token, eventId, hasAfter, response2)
+        }
+
+
+            return firstIt
+
+
+
+    }
+
+    private fun performCall(url: String?,response2: MyInterface, token: String, eventId :String) {
 
         val request = Request.Builder()
                 .url(url)
@@ -69,6 +78,8 @@ class HttpService {
                 val gson = Gson()
                 val topic = gson.fromJson(jsonData, Example::class.java)
                 response2.setResponse(topic)
+                teste(response2,token, eventId,emptyList())
+
             }
         })
     }

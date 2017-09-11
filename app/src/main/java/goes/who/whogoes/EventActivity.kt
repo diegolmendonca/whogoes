@@ -22,7 +22,7 @@ class EventActivity : AppCompatActivity() {
         MyApplication.graph.inject(this)
 
         var token = intent.getStringExtra("FACEBOOK_TOKEN")
-        var eventId = "1928591074051643"
+        var eventId = "476707972696392"
 
         httpService.run(token, eventId, "", MyInterface())
 
