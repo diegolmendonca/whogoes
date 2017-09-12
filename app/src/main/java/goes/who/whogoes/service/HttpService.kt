@@ -27,8 +27,8 @@ class HttpService {
     lateinit var gson: Gson
 
 
-//    @Inject
-//    lateinit var responseService : ResponseService
+    @Inject
+    lateinit var responseService : ResponseService
 
     // todo: try to inject it
     lateinit var userEventStatus: List<UserEventStatus>
@@ -55,20 +55,20 @@ class HttpService {
         val request = Request.Builder().url(url).build()
         val httpResponse = httpClient.newCall(request).execute()
 
-        val topic = gson.fromJson(httpResponse.body()?.string(), Example::class.java)
-        val res: List<Datum> = topic.data.filter { x ->
-            x.name.equals("Rutha Monatan") ||
-                    x.name.equals("Eva Maria") ||
-                    x.name.equals("Sven Schmidt") ||
-                    x.name.equals("Mahnaz Rezai")
-        }
+      val res =  responseService.transform(httpResponse,stat)
 
-        val categorizedStatus = res.map { x -> x.copy(status = stat) }
+//        val topic = gson.fromJson(httpResponse.body()?.string(), Example::class.java)
+//        val res: List<Datum> = topic.data.filter { x ->
+//            x.name.equals("Rutha Monatan") ||
+//                    x.name.equals("Eva Maria") ||
+//                    x.name.equals("Sven Schmidt") ||
+//                    x.name.equals("Mahnaz Rezai")
+//        }
 
 
-        if (topic.paging.next.isNullOrEmpty())
-            return categorizedStatus
-        return categorizedStatus.plus(call(topic.paging.next, stat))
+        if (res.nextURL.isNullOrEmpty())
+            return res.datum
+        return res.datum.plus(call(res.nextURL, stat))
 
     }
 

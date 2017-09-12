@@ -13,7 +13,7 @@ import javax.inject.Singleton
  */
 
 
-data class ResponseData(val datum: List<Datum>, val nextURL: String)
+data class ResponseData(val datum: List<Datum>, val nextURL: String?)
 
 @Singleton
 class ResponseService {
