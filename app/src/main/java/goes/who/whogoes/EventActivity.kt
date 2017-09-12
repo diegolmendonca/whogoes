@@ -7,11 +7,15 @@ package goes.who.whogoes
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.widget.Toast
 import goes.who.whogoes.service.HttpService
-import goes.who.whogoes.service.MyInterface
+import kotlinx.coroutines.experimental.Deferred
+import kotlinx.coroutines.experimental.launch
+import kotlinx.coroutines.experimental.CommonPool
+import java.io.IOException
 import javax.inject.Inject
 
-class EventActivity : AppCompatActivity() {
+class EventActivity : AppCompatActivity()  {
     @Inject
     lateinit var httpService: HttpService
 
@@ -24,7 +28,21 @@ class EventActivity : AppCompatActivity() {
         var token = intent.getStringExtra("FACEBOOK_TOKEN")
         var eventId = "476707972696392"
 
-        httpService.run(token, eventId, "", MyInterface())
+
+
+        launch(CommonPool) {
+            try {
+                val result = httpService.performCall(token, eventId)
+               val r =  result.await()
+
+                r.get(0)
+            } catch (exception: IOException){
+                Toast.makeText(this@EventActivity, "Phone not connected or service down", Toast.LENGTH_SHORT).show()
+            }
+
+        }
+
+
 
     }
 

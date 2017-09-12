@@ -18,3 +18,7 @@ class MyInterface {
 
    // fun getRes() : List<Datum> { return res }
 }
+
+
+
+data class EventResponse(val res:List<Datum>, val nextUrl: String)

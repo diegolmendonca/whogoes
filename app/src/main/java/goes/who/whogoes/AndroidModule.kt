@@ -7,6 +7,7 @@ package goes.who.whogoes
 
 import android.app.Application
 import android.content.Context
+import com.google.gson.Gson
 import dagger.Module
 import dagger.Provides
 import goes.who.whogoes.service.HttpService
@@ -30,6 +31,12 @@ class AndroidModule(private val application: Application) {
         val okHttpClientBuilder: OkHttpClient.Builder = OkHttpClient.Builder()
         return okHttpClientBuilder.build()
 
+    }
+
+    @Provides
+    @Singleton
+    fun provideGSON(): Gson {
+        return Gson()
     }
 
     @Provides
