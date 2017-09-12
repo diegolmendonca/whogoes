@@ -26,39 +26,50 @@ class HttpService {
     @Inject
     lateinit var gson: Gson
 
+
+//    @Inject
+//    lateinit var responseService : ResponseService
+
+    // todo: try to inject it
+    lateinit var userEventStatus: List<UserEventStatus>
+
     @Inject
     @field:Named("baseURI") lateinit var baseURI: String
-    @Inject
-    @field:Named("attending") lateinit var attending: String
-    @Inject
-    @field:Named("interested") lateinit var interested: String
+
     @Inject
     @field:Named("remainingURI") lateinit var remainingURI: String
-    @Inject
-    @field:Named("after") lateinit var after: String
 
     constructor() {
         MyApplication.graph.inject(this)
     }
 
-    fun performCall(token: String, eventId: String): Deferred<List<Datum>> {
-        return async(CommonPool) {
-            call(baseURI + eventId + "/" + interested + remainingURI + token)
+    fun performCall(token: String, eventId: String): List<Deferred<List<Datum>>> {
+        return userEventStatus.map { stat ->
+            async(CommonPool) {
+                call(baseURI + eventId + "/" + stat.status() + remainingURI + token, stat.status())
+            }
         }
     }
 
-    private fun call (url: String?): List<Datum> {
+    private fun call(url: String?, stat: String): List<Datum> {
         val request = Request.Builder().url(url).build()
-        val response = httpClient.newCall(request).execute()
-        val topic = gson.fromJson(response.body()?.string(), Example::class.java)
-        val res: List<Datum> = topic.data.filter { x -> x.name.equals("Eva Maria") || x.name.equals("Sven Schmidt") || x.name.equals("Mahnaz Rezai") }
-        val nextPageURI = topic.paging.next
+        val httpResponse = httpClient.newCall(request).execute()
 
-        if (nextPageURI.isNullOrEmpty()) {
-            return res
-        } else {
-            return res.plus(call(nextPageURI))
+        val topic = gson.fromJson(httpResponse.body()?.string(), Example::class.java)
+        val res: List<Datum> = topic.data.filter { x ->
+            x.name.equals("Rutha Monatan") ||
+                    x.name.equals("Eva Maria") ||
+                    x.name.equals("Sven Schmidt") ||
+                    x.name.equals("Mahnaz Rezai")
         }
+
+        val categorizedStatus = res.map { x -> x.copy(status = stat) }
+
+
+        if (topic.paging.next.isNullOrEmpty())
+            return categorizedStatus
+        return categorizedStatus.plus(call(topic.paging.next, stat))
+
     }
 
 }
