@@ -25,7 +25,6 @@ class HttpService {
     @Inject
     lateinit var gson: Gson
 
-
     @Inject
     lateinit var responseService: ResponseService
 
@@ -55,10 +54,8 @@ class HttpService {
         val httpResponse = httpClient.newCall(request).execute()
         val formattedResponse = responseService.transform(httpResponse, stat)
 
-        if (formattedResponse.nextURL.isNullOrEmpty())
-            return formattedResponse.datum
+        if (formattedResponse.nextURL.isNullOrEmpty()) return formattedResponse.datum
         return formattedResponse.datum.plus(call(formattedResponse.nextURL, stat))
-
     }
 
 }

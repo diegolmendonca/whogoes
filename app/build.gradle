@@ -39,6 +39,7 @@ dependencies {
     compile 'com.squareup.okhttp3:logging-interceptor:3.8.1'
     compile 'com.squareup.retrofit2:retrofit:2.0.0'
     compile 'com.squareup.retrofit2:converter-gson:2.0.0'
+    compile "org.jetbrains.kotlinx:kotlinx-coroutines-android:0.18"
 
 
 

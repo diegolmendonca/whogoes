@@ -7,7 +7,7 @@
     tools:context="goes.who.whogoes.EventActivity">
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/posts_list"
+        android:id="@+id/response"
         android:scrollbars="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
