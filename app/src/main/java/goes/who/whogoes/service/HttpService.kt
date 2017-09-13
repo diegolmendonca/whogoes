@@ -1,6 +1,5 @@
 package goes.who.whogoes.service
 
-import com.google.gson.Gson
 import goes.who.whogoes.MyApplication
 import goes.who.whogoes.model.Datum
 import kotlinx.coroutines.experimental.CommonPool
@@ -23,9 +22,6 @@ class HttpService {
     lateinit var httpClient: OkHttpClient
 
     @Inject
-    lateinit var gson: Gson
-
-    @Inject
     lateinit var responseService: ResponseService
 
     // todo: try to inject it
@@ -41,21 +37,21 @@ class HttpService {
         MyApplication.graph.inject(this)
     }
 
-    fun performCall(token: String, eventId: String): List<Deferred<List<Datum>>> {
+    fun performCall(request : RequestModel): List<Deferred<List<Datum>>> {
         return userEventStatus.map { stat ->
             async(CommonPool) {
-                call(baseURI + eventId + "/" + stat.status() + remainingURI + token, stat.status())
+                call(baseURI + request.eventID + "/" + stat.status() + remainingURI + request.token, stat.status(), request.name)
             }
         }
     }
 
-    private fun call(url: String?, stat: String): List<Datum> {
+    private fun call(url: String?, stat: String, name:String): List<Datum> {
         val request = Request.Builder().url(url).build()
         val httpResponse = httpClient.newCall(request).execute()
-        val formattedResponse = responseService.transform(httpResponse, stat)
+        val formattedResponse = responseService.transform(httpResponse, stat, name)
 
         if (formattedResponse.nextURL.isNullOrEmpty()) return formattedResponse.datum
-        return formattedResponse.datum.plus(call(formattedResponse.nextURL, stat))
+        return formattedResponse.datum.plus(call(formattedResponse.nextURL, stat, name))
     }
 
 }

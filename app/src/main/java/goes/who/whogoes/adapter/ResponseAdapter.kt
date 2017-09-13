@@ -4,6 +4,7 @@ package goes.who.whogoes.adapter
  * Created by doma on 12.09.2017.
  */
 
+import android.graphics.Color
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -18,10 +19,26 @@ class ResponseAdapter(var responseList: List<Datum>) : RecyclerView.Adapter<Resp
         responseList = elements
     }
 
+    // TODO: Refactor this crap
     override fun onBindViewHolder(holder: ResponseViewHolder, position: Int) {
         val item = responseList[position]
-        holder.title.text = item.id
+
+        if (item.status == "attending/") {
+            holder.title.text = "attending".toUpperCase()
+            holder.title.setTextColor(Color.GREEN)
+        }
+
+        else if (item.status == "interested/") {
+            holder.title.text = "interested".toUpperCase()
+            holder.title.setTextColor(Color.BLUE)
+        }
+
+        else if (item.status == "declined/") {
+            holder.title.text = "declined".toUpperCase()
+            holder.title.setTextColor(Color.RED)
+        }
         holder.body.text = item.name
+        holder.body.setTextColor(Color.BLACK)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ResponseViewHolder {
@@ -34,8 +51,6 @@ class ResponseAdapter(var responseList: List<Datum>) : RecyclerView.Adapter<Resp
         return responseList.size
     }
 
-
 }
-
 
 data class ResponseViewHolder(val view: View, val title : TextView, val body: TextView) : RecyclerView.ViewHolder(view)

@@ -10,10 +10,7 @@ import android.content.Context
 import com.google.gson.Gson
 import dagger.Module
 import dagger.Provides
-import goes.who.whogoes.service.Attending
-import goes.who.whogoes.service.HttpService
-import goes.who.whogoes.service.Interested
-import goes.who.whogoes.service.ResponseService
+import goes.who.whogoes.service.*
 import okhttp3.OkHttpClient
 import javax.inject.Named
 import javax.inject.Singleton
@@ -53,10 +50,9 @@ class AndroidModule(private val application: Application) {
     fun provideHttpService(): HttpService {
         val httpService = HttpService()
         // Try to inject it
-        httpService.userEventStatus = listOf(Attending(), Interested())
+        httpService.userEventStatus = listOf(Attending(), Interested(), Declined())
         return  httpService
     }
-
 
     @Provides @Named("baseURI")
     @Singleton

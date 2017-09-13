@@ -11,6 +11,7 @@ import android.support.v7.widget.RecyclerView
 import android.widget.Toast
 import goes.who.whogoes.adapter.ResponseAdapter
 import goes.who.whogoes.service.HttpService
+import goes.who.whogoes.service.RequestModel
 import kotlinx.coroutines.experimental.android.UI
 import kotlinx.coroutines.experimental.launch
 import java.io.IOException
@@ -46,12 +47,16 @@ class EventActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
 
-        var token = intent.getStringExtra("FACEBOOK_TOKEN")
-        var eventId = "476707972696392"
+        val request = RequestModel(
+                intent.getStringExtra("eventId"),
+                intent.getStringExtra("name"),
+                intent.getStringExtra("FACEBOOK_TOKEN")
+        )
+
 
         launch(UI) {
             try {
-                val result = httpService.performCall(token, eventId).flatMap { statusCall ->
+                val result = httpService.performCall(request).flatMap { statusCall ->
                     statusCall.await()
                 }
 

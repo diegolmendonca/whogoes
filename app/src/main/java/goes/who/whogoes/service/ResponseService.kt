@@ -13,7 +13,6 @@ import javax.inject.Singleton
  */
 
 
-data class ResponseData(val datum: List<Datum>, val nextURL: String?)
 
 @Singleton
 class ResponseService {
@@ -25,18 +24,13 @@ class ResponseService {
     @Inject
     lateinit var gson: Gson
 
-    fun transform(response: Response, stat: String): ResponseData {
-
+    fun transform(response: Response, stat: String, name: String): ResponseModel {
         val topic = gson.fromJson(response.body()?.string(), Example::class.java)
-        val res: List<Datum> = topic.data.filter { x ->
-            x.name.equals("Rutha Monatan") ||
-                    x.name.equals("Eva Maria") ||
-                    x.name.equals("Sven Schmidt") ||
-                    x.name.equals("Mahnaz Rezai")
-        }
+        val res: List<Datum> = topic.data.filter { x -> x.name.contains(name) }
+
+        val next = if (topic.paging != null)  topic.paging.next else null
 
         val categorizedStatus = res.map { x -> x.copy(status = stat) }
-        return ResponseData(categorizedStatus, topic.paging.next)
+        return ResponseModel(categorizedStatus, next)
     }
-
 }
