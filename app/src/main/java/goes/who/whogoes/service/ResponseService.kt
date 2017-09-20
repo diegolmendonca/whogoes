@@ -4,6 +4,7 @@ import com.google.gson.Gson
 import goes.who.whogoes.MyApplication
 import goes.who.whogoes.model.Datum
 import goes.who.whogoes.model.Example
+import goes.who.whogoes.model.ExampleEvent
 import okhttp3.Response
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -32,5 +33,10 @@ class ResponseService {
 
         val categorizedStatus = res.map { x -> x.copy(status = stat) }
         return ResponseModel(categorizedStatus, next)
+    }
+
+    fun transform2(response: Response): ResponseModel2 {
+        val topic = gson.fromJson(response.body()?.string(), ExampleEvent::class.java)
+        return ResponseModel2(topic.data)
     }
 }

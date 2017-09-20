@@ -13,7 +13,7 @@ import android.widget.TextView
 import goes.who.whogoes.R
 import goes.who.whogoes.model.Datum
 
-class ResponseAdapter(var responseList: List<Datum>) : RecyclerView.Adapter<ResponseViewHolder>(){
+class AttendeesResponseAdapter(var responseList: List<Datum>) : RecyclerView.Adapter<ResponseViewHolder>(){
 
     fun setElements(elements : List<Datum>){
         responseList = elements

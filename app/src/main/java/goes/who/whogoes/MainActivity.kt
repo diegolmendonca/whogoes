@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
         val accessToken = AccessToken.getCurrentAccessToken()
 
         if (!accessToken.isExpired) {
-            val intent = Intent(applicationContext, InputActivity::class.java)
+            val intent = Intent(applicationContext, EventFinderActivity::class.java)
             intent.putExtra("FACEBOOK_TOKEN", accessToken.token);
             startActivity(intent)
         } else {
@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity() {
                 override fun onSuccess(loginResult: LoginResult) {
                     Log.d("MainActivity", "Facebook token: " + loginResult.accessToken.token)
 
-                    val intent = Intent(applicationContext, InputActivity::class.java)
+                    val intent = Intent(applicationContext, EventFinderActivity::class.java)
                     intent.putExtra("FACEBOOK_TOKEN", loginResult.accessToken.token);
                     startActivity(intent)
                 }

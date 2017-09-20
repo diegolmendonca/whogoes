@@ -17,6 +17,7 @@ interface ApplicationComponent {
     fun inject(responseService: ResponseService)
     fun inject(httpService: HttpService)
     fun inject(eventActivity: EventActivity)
+    fun inject(eventFinderResponseActivity:EventFinderResponseActivity)
 
 
 }
