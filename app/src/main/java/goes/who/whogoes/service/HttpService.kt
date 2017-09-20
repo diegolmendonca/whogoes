@@ -46,11 +46,15 @@ class HttpService {
     }
 
     private fun call(url: String?, stat: String, name:String): List<Datum> {
+        println("CALLING:" + stat)
         val request = Request.Builder().url(url).build()
         val httpResponse = httpClient.newCall(request).execute()
         val formattedResponse = responseService.transform(httpResponse, stat, name)
 
-        if (formattedResponse.nextURL.isNullOrEmpty()) return formattedResponse.datum
+        if (formattedResponse.nextURL.isNullOrEmpty()){
+            println("ACABANDO: " + stat)
+            return formattedResponse.datum
+        }
         return formattedResponse.datum.plus(call(formattedResponse.nextURL, stat, name))
     }
 

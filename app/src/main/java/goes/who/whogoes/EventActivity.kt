@@ -64,7 +64,7 @@ class EventActivity : AppCompatActivity() {
                 responseAdapter.notifyDataSetChanged()
 
             } catch (exception: IOException) {
-                Toast.makeText(this@EventActivity, "Phone not connected or service down", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@EventActivity, "Service timed out. Please check your internet connection and try again", Toast.LENGTH_SHORT).show()
             }
 
         }

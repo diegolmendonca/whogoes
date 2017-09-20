@@ -12,6 +12,7 @@ import dagger.Module
 import dagger.Provides
 import goes.who.whogoes.service.*
 import okhttp3.OkHttpClient
+import java.util.concurrent.TimeUnit
 import javax.inject.Named
 import javax.inject.Singleton
 
@@ -28,6 +29,9 @@ class AndroidModule(private val application: Application) {
     @Singleton
     fun provideClient(): OkHttpClient {
         val okHttpClientBuilder: OkHttpClient.Builder = OkHttpClient.Builder()
+        okHttpClientBuilder.connectTimeout(30, TimeUnit.SECONDS)
+        okHttpClientBuilder.readTimeout(30, TimeUnit.SECONDS)
+        okHttpClientBuilder.writeTimeout(30, TimeUnit.SECONDS)
         return okHttpClientBuilder.build()
 
     }
