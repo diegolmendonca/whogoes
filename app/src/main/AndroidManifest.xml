@@ -17,7 +17,7 @@
             android:value="@string/facebook_app_id" />
 
         <activity
-            android:name=".MainActivity"
+            android:name=".activity.MainActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -29,20 +29,20 @@
 
 
         <activity
-        android:name=".EventFinderActivity"
+        android:name=".activity.EventFinderActivity"
         android:label="@string/title_activity_event"
         android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
-            android:name=".EventFinderResponseActivity"
+            android:name=".activity.EventFinderResponseActivity"
             android:label="@string/title_activity_event"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
-            android:name=".EventActivity"
+            android:name=".activity.EventActivity"
             android:label="@string/title_activity_event"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".InputActivity"></activity>
+        <activity android:name=".activity.InputActivity"></activity>
     </application>
 
 </manifest>

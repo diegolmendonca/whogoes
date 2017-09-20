@@ -4,64 +4,71 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="goes.who.whogoes.InputActivity">
+    tools:context="goes.who.whogoes.activity.InputActivity">
 
     <Button
         android:id="@+id/fire"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="0dp"
         android:text="Search"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.647" />
+        app:layout_constraintTop_toBottomOf="@+id/name" />
 
     <EditText
         android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="0dp"
         android:contentDescription="Name"
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toTopOf="@+id/fire"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Event:"
-        tools:layout_editor_absoluteX="173dp"
-        tools:layout_editor_absoluteY="0dp"
-        android:layout_marginBottom="37dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="157dp"
+        android:layout_marginStart="158dp"
+        android:text="Step 3 of 3"
         app:layout_constraintBottom_toTopOf="@+id/eventName"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginStart="173dp"
-        android:layout_marginEnd="172dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="1dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteX="158dp"
+        tools:layout_editor_absoluteY="1dp" />
 
     <TextView
         android:id="@+id/eventName"
         android:layout_width="wrap_content"
-        android:layout_height="19dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="163dp"
+        android:layout_marginStart="163dp"
+        android:layout_marginTop="0dp"
         android:text="TextView"
-        tools:layout_editor_absoluteY="56dp"
-        tools:layout_editor_absoluteX="163dp" />
+        app:layout_constraintBottom_toTopOf="@+id/textView4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        tools:layout_editor_absoluteX="163dp"
+        tools:layout_editor_absoluteY="56dp" />
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="19dp"
-        android:layout_marginBottom="80dp"
+        android:layout_marginBottom="0dp"
         android:layout_marginEnd="129dp"
         android:layout_marginStart="131dp"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="16dp"
         android:text="Please type a name:"
         app:layout_constraintBottom_toTopOf="@+id/name"
         app:layout_constraintEnd_toEndOf="parent"

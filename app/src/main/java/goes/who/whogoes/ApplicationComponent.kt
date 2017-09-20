@@ -1,6 +1,9 @@
 package goes.who.whogoes
 
 import dagger.Component
+import goes.who.whogoes.activity.EventActivity
+import goes.who.whogoes.activity.EventFinderResponseActivity
+import goes.who.whogoes.activity.MainActivity
 import goes.who.whogoes.service.HttpService
 import goes.who.whogoes.service.ResponseService
 import javax.inject.Singleton
@@ -17,7 +20,7 @@ interface ApplicationComponent {
     fun inject(responseService: ResponseService)
     fun inject(httpService: HttpService)
     fun inject(eventActivity: EventActivity)
-    fun inject(eventFinderResponseActivity:EventFinderResponseActivity)
+    fun inject(eventFinderResponseActivity: EventFinderResponseActivity)
 
 
 }

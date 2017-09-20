@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.squareup.picasso.Picasso
-import goes.who.whogoes.InputActivity
+import goes.who.whogoes.activity.InputActivity
 import goes.who.whogoes.R
 import goes.who.whogoes.model.DatumEvent
 

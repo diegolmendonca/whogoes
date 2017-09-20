@@ -4,14 +4,24 @@
     android:id="@+id/activity_event"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="goes.who.whogoes.EventActivity">
+    tools:context="goes.who.whogoes.activity.EventActivity">
+
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/response"
-        android:scrollbars="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentBottom="true"
+        android:layout_marginTop="12dp"
+        android:scrollbars="vertical"
+        android:layout_below="@+id/title"
         android:layout_alignParentStart="true" />
 
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:text="Step 2 of 3 : Select Event" />
 </RelativeLayout>
+

@@ -1,4 +1,4 @@
-package goes.who.whogoes
+package goes.who.whogoes.activity
 
 /**
  * Created by doma on 31.08.2017.
@@ -8,9 +8,11 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.widget.TextView
 import android.widget.Toast
+import goes.who.whogoes.MyApplication
+import goes.who.whogoes.R
 import goes.who.whogoes.adapter.AttendeesResponseAdapter
-import goes.who.whogoes.adapter.EventResponseAdapter
 import goes.who.whogoes.service.HttpService
 import goes.who.whogoes.service.RequestModel
 import kotlinx.coroutines.experimental.android.UI
@@ -26,6 +28,7 @@ class EventActivity : AppCompatActivity() {
     private lateinit var responseList: RecyclerView
     private lateinit var responseAdapter: AttendeesResponseAdapter
     private lateinit var postsLayoutManager: RecyclerView.LayoutManager
+    private lateinit var title: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,6 +38,8 @@ class EventActivity : AppCompatActivity() {
         responseList = findViewById<RecyclerView>(R.id.response)
         responseAdapter = AttendeesResponseAdapter(emptyList())
         postsLayoutManager = LinearLayoutManager(this)
+        title = findViewById<TextView>(R.id.title)
+        title.text = "RESULTS:"
 
         responseList.apply {
             setHasFixedSize(true)

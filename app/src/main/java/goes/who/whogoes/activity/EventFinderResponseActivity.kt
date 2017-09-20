@@ -1,10 +1,12 @@
-package goes.who.whogoes
+package goes.who.whogoes.activity
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.widget.Toast
+import goes.who.whogoes.MyApplication
+import goes.who.whogoes.R
 import goes.who.whogoes.adapter.EventResponseAdapter
 import goes.who.whogoes.service.HttpService
 import goes.who.whogoes.service.RequestModel
