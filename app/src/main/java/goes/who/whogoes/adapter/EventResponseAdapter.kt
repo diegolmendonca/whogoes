@@ -9,9 +9,11 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.squareup.picasso.Picasso
-import goes.who.whogoes.activity.InputActivity
 import goes.who.whogoes.R
+import goes.who.whogoes.activity.InputActivity
 import goes.who.whogoes.model.DatumEvent
+import java.text.SimpleDateFormat
+import java.time.LocalDate
 
 class EventResponseAdapter(val act: Activity, var responseList: List<DatumEvent>, val faceToken:String) : RecyclerView.Adapter<EventResponseViewHolder>() {
 
@@ -21,9 +23,16 @@ class EventResponseAdapter(val act: Activity, var responseList: List<DatumEvent>
 
     override fun onBindViewHolder(holder: EventResponseViewHolder, position: Int) {
         val item = responseList[position]
+
+        val incomingFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")
+        val date = incomingFormat.parse(item.start_time)
+        val outgoingFormat = SimpleDateFormat(" EEEE, dd MMMM yyyy")
+
+
         holder.attending.text = "Attending:" + item.attending_count.toString()
         holder.interested.text = "Interested:" + item.interested_count.toString()
         holder.declined.text = "Declined:" + item.declined_count.toString()
+        holder.date.text = outgoingFormat.format(date)
         holder.name.text = item.name
         Picasso.with(act.applicationContext).load(item.cover?.source).into(holder.image)
 
@@ -39,6 +48,7 @@ class EventResponseAdapter(val act: Activity, var responseList: List<DatumEvent>
                 act,
                 view,
                 view.findViewById<TextView>(R.id.name),
+                view.findViewById<TextView>(R.id.date),
                 view.findViewById<TextView>(R.id.attending),
                 view.findViewById<TextView>(R.id.interested),
                 view.findViewById<TextView>(R.id.declined),
@@ -56,6 +66,7 @@ data class EventResponseViewHolder(
         val act: Activity,
         val view: View,
         val name: TextView,
+        val date: TextView,
         val attending: TextView,
         val interested: TextView,
         val declined: TextView,
@@ -67,7 +78,6 @@ data class EventResponseViewHolder(
             intent.putExtra("datumEventId", datumEvent.id)
             intent.putExtra("datumEventName", datumEvent.name)
             intent.putExtra("FACEBOOK_TOKEN", faceToken)
-
             act.startActivity(intent)
         })
     }

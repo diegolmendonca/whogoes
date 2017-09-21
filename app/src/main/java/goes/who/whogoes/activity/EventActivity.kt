@@ -8,6 +8,8 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.view.View
+import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import goes.who.whogoes.MyApplication
@@ -26,6 +28,7 @@ class EventActivity : AppCompatActivity() {
     lateinit var httpService: HttpService
 
     private lateinit var responseList: RecyclerView
+    private lateinit var mProgressBar: ProgressBar
     private lateinit var responseAdapter: AttendeesResponseAdapter
     private lateinit var postsLayoutManager: RecyclerView.LayoutManager
     private lateinit var title: TextView
@@ -36,8 +39,9 @@ class EventActivity : AppCompatActivity() {
         MyApplication.graph.inject(this)
 
         responseList = findViewById<RecyclerView>(R.id.response)
-        responseAdapter = AttendeesResponseAdapter(emptyList())
+        responseAdapter = AttendeesResponseAdapter(this, emptyList())
         postsLayoutManager = LinearLayoutManager(this)
+        mProgressBar = findViewById<ProgressBar>(R.id.progress_bar)
         title = findViewById<TextView>(R.id.title)
         title.text = "RESULTS:"
 
@@ -64,6 +68,8 @@ class EventActivity : AppCompatActivity() {
                 }
                 responseAdapter.setElements(result)
                 responseAdapter.notifyDataSetChanged()
+                responseList.setVisibility(View.VISIBLE)
+                mProgressBar.setVisibility(View.GONE)
             } catch (exception: IOException) {
                 Toast.makeText(this@EventActivity, "Service timed out. Please check your internet connection and try again", Toast.LENGTH_SHORT).show()
             }
