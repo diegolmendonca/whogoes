@@ -1,7 +1,7 @@
-package goes.who.whogoes
+package goes.who.whogoes.di
 
 /**
- * Created by doma on 01.09.2017.
+ * Created by Diego Mendonca on 01.09.2017.
  */
 
 

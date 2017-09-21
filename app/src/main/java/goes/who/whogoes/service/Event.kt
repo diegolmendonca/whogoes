@@ -5,7 +5,7 @@ import goes.who.whogoes.model.DatumEvent
 import goes.who.whogoes.model.Example
 
 /**
- * Created by doma on 08.09.2017.
+ * Created by Diego Mendonca on 08.09.2017.
  */
 
 

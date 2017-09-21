@@ -1,4 +1,4 @@
-package goes.who.whogoes
+package goes.who.whogoes.di
 
 import dagger.Component
 import goes.who.whogoes.activity.EventActivity
@@ -9,7 +9,7 @@ import goes.who.whogoes.service.ResponseService
 import javax.inject.Singleton
 
 /**
- * Created by doma on 01.09.2017.
+ * Created by Diego Mendonca on 01.09.2017.
  */
 
 @Singleton

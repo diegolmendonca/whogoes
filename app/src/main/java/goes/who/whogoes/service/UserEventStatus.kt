@@ -1,7 +1,7 @@
 package goes.who.whogoes.service
 
 /**
- * Created by doma on 12.09.2017.
+ * Created by Diego Mendonca on 12.09.2017.
  */
 
 interface UserEventStatus {

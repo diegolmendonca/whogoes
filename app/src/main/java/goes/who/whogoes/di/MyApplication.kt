@@ -1,11 +1,10 @@
-package goes.who.whogoes
+package goes.who.whogoes.di
 
 import android.app.Application
-import android.location.LocationManager
-import javax.inject.Inject
+import goes.who.whogoes.di.DaggerApplicationComponent
 
 /**
- * Created by doma on 01.09.2017.
+ * Created by Diego Mendonca on 01.09.2017.
  */
 
 

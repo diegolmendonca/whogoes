@@ -8,7 +8,7 @@ import android.widget.Button
 import com.facebook.*
 import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult
-import goes.who.whogoes.MyApplication
+import goes.who.whogoes.di.MyApplication
 import goes.who.whogoes.R
 
 

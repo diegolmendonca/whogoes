@@ -1,6 +1,6 @@
 package goes.who.whogoes.service
 
-import goes.who.whogoes.MyApplication
+import goes.who.whogoes.di.MyApplication
 import goes.who.whogoes.model.Datum
 import goes.who.whogoes.model.DatumEvent
 import kotlinx.coroutines.experimental.CommonPool
@@ -14,7 +14,7 @@ import javax.inject.Singleton
 
 
 /**
- * Created by doma on 08.09.2017.
+ * Created by Diego Mendonca on 08.09.2017.
  */
 
 @Singleton

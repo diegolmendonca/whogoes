@@ -1,7 +1,7 @@
 package goes.who.whogoes.activity
 
 /**
- * Created by doma on 31.08.2017.
+ * Created by Diego Mendonca on 31.08.2017.
  */
 
 import android.os.Bundle
@@ -12,7 +12,7 @@ import android.view.View
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
-import goes.who.whogoes.MyApplication
+import goes.who.whogoes.di.MyApplication
 import goes.who.whogoes.R
 import goes.who.whogoes.adapter.AttendeesResponseAdapter
 import goes.who.whogoes.service.HttpService

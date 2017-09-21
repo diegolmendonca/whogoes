@@ -1,7 +1,7 @@
 package goes.who.whogoes.model
 
 /**
- * Created by doma on 20.09.2017.
+ * Created by Diego Mendonca on 20.09.2017.
  */
 
 

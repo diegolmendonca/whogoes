@@ -7,7 +7,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.widget.ProgressBar
 import android.widget.Toast
-import goes.who.whogoes.MyApplication
+import goes.who.whogoes.di.MyApplication
 import goes.who.whogoes.R
 import goes.who.whogoes.adapter.EventResponseAdapter
 import goes.who.whogoes.service.HttpService

@@ -1,7 +1,7 @@
 package goes.who.whogoes.service
 
 import com.google.gson.Gson
-import goes.who.whogoes.MyApplication
+import goes.who.whogoes.di.MyApplication
 import goes.who.whogoes.model.Datum
 import goes.who.whogoes.model.Example
 import goes.who.whogoes.model.ExampleEvent
@@ -10,7 +10,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 /**
- * Created by doma on 12.09.2017.
+ * Created by Diego Mendonca on 12.09.2017.
  */
 
 

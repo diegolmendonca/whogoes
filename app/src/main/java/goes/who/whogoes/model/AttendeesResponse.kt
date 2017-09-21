@@ -3,7 +3,7 @@ package goes.who.whogoes.model
 import goes.who.whogoes.service.UserEventStatus
 
 /**
- * Created by doma on 30.08.2017.
+ * Created by Diego Mendonca on 30.08.2017.
  */
 
 data class Cursors(val before: String, val after: String)
