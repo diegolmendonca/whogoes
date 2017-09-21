@@ -14,8 +14,6 @@ import goes.who.whogoes.R
 
 class MainActivity : AppCompatActivity() {
 
-    val TAG = MainActivity::class.java.name
-
     lateinit  var button : Button
     lateinit  var callbackManager : CallbackManager
 
@@ -28,37 +26,35 @@ class MainActivity : AppCompatActivity() {
         button = findViewById(R.id.login_button)
         callbackManager = CallbackManager.Factory.create()
 
-        val accessToken = AccessToken.getCurrentAccessToken()
 
-        if (!accessToken.isExpired) {
-            val intent = Intent(applicationContext, EventFinderActivity::class.java)
-            intent.putExtra("FACEBOOK_TOKEN", accessToken.token);
-            startActivity(intent)
+        val accessToken : AccessToken? = AccessToken.getCurrentAccessToken()
+
+        if (accessToken != null && !accessToken.isExpired) {
+            startEventFinderActivity(accessToken)
         } else {
-
 
             LoginManager.getInstance().registerCallback(callbackManager, object : FacebookCallback<LoginResult> {
                 override fun onSuccess(loginResult: LoginResult) {
                     Log.d("MainActivity", "Facebook token: " + loginResult.accessToken.token)
-
-                    val intent = Intent(applicationContext, EventFinderActivity::class.java)
-                    intent.putExtra("FACEBOOK_TOKEN", loginResult.accessToken.token);
-                    startActivity(intent)
+                    startEventFinderActivity(loginResult.accessToken)
                 }
 
                 override fun onCancel() {
                     Log.d("MainActivity", "Facebook onCancel.")
-
                 }
 
                 override fun onError(error: FacebookException) {
                     Log.d("MainActivity", "Facebook onError.")
-
-
                 }
             })
 
         }
+    }
+
+    private fun startEventFinderActivity(accessToken: AccessToken) {
+        val intent = Intent(applicationContext, EventFinderActivity::class.java)
+        intent.putExtra("FACEBOOK_TOKEN", accessToken.token);
+        startActivity(intent)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
