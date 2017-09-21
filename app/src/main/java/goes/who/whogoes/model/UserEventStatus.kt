@@ -1,4 +1,4 @@
-package goes.who.whogoes.service
+package goes.who.whogoes.model
 
 /**
  * Created by Diego Mendonca on 12.09.2017.

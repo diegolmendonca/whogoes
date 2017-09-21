@@ -1,22 +1,20 @@
-package goes.who.whogoes.service
+package goes.who.whogoes.service.response
 
 import com.google.gson.Gson
 import goes.who.whogoes.di.MyApplication
 import goes.who.whogoes.model.Datum
 import goes.who.whogoes.model.Example
-import goes.who.whogoes.model.ExampleEvent
+import goes.who.whogoes.model.ResponseModel
 import okhttp3.Response
 import javax.inject.Inject
 import javax.inject.Singleton
 
 /**
- * Created by Diego Mendonca on 12.09.2017.
+ * Created by Diego Mendonca on 21.09.2017.
  */
 
-
-
 @Singleton
-class ResponseService {
+class AttendeeResponseService: ResponseService<Example> {
 
     constructor() {
         MyApplication.graph.inject(this)
@@ -25,18 +23,17 @@ class ResponseService {
     @Inject
     lateinit var gson: Gson
 
-    fun transform(response: Response, stat: String, name: String): ResponseModel {
+    override fun transform(response: Response): Example {
         val topic = gson.fromJson(response.body()?.string(), Example::class.java)
+        return topic
+    }
+
+    fun processResponse(response: Response, stat: String, name: String): ResponseModel {
+        val topic = transform(response)
         val res: List<Datum> = topic.data.filter { x -> x.name.contains(name) }
-
         val next = if (topic.paging != null)  topic.paging.next else null
-
         val categorizedStatus = res.map { x -> x.copy(status = stat) }
         return ResponseModel(categorizedStatus, next)
     }
 
-    fun transform2(response: Response): ResponseModel2 {
-        val topic = gson.fromJson(response.body()?.string(), ExampleEvent::class.java)
-        return ResponseModel2(topic.data)
-    }
 }

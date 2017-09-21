@@ -10,10 +10,15 @@ import android.content.Context
 import com.google.gson.Gson
 import dagger.Module
 import dagger.Provides
-import goes.who.whogoes.service.*
+import goes.who.whogoes.model.Attending
+import goes.who.whogoes.model.Declined
+import goes.who.whogoes.model.Interested
+import goes.who.whogoes.service.request.AttendeeRequestService
+import goes.who.whogoes.service.request.EventRequestService
+import goes.who.whogoes.service.response.AttendeeResponseService
+import goes.who.whogoes.service.response.EventResponseService
 import okhttp3.OkHttpClient
 import java.util.concurrent.TimeUnit
-import javax.inject.Named
 import javax.inject.Singleton
 
 @Module
@@ -33,7 +38,6 @@ class AndroidModule(private val application: Application) {
         okHttpClientBuilder.readTimeout(30, TimeUnit.SECONDS)
         okHttpClientBuilder.writeTimeout(30, TimeUnit.SECONDS)
         return okHttpClientBuilder.build()
-
     }
 
     @Provides
@@ -44,30 +48,30 @@ class AndroidModule(private val application: Application) {
 
     @Provides
     @Singleton
-    fun provideResponseService(): ResponseService {
-        return  ResponseService()
+    fun provideAttendeeResponseService(): AttendeeResponseService {
+        return AttendeeResponseService()
     }
-
 
     @Provides
     @Singleton
-    fun provideHttpService(): HttpService {
-        val httpService = HttpService()
+    fun provideEventResponseService(): EventResponseService {
+        return EventResponseService()
+    }
+
+    @Provides
+    @Singleton
+    fun provideEventRequestService(): EventRequestService {
+        val eventRequestService = EventRequestService()
+        return  eventRequestService
+    }
+
+    @Provides
+    @Singleton
+    fun provideAttendeeRequestService(): AttendeeRequestService {
+        val attendeeRequestService = AttendeeRequestService()
         // Try to inject it
-        httpService.userEventStatus = listOf(Attending(), Interested(), Declined())
-        return  httpService
-    }
-
-    @Provides @Named("baseURI")
-    @Singleton
-    fun baseURI(): String {
-        return "https://graph.facebook.com/v2.10/"
-    }
-
-    @Provides @Named("remainingURI")
-    @Singleton
-    fun remainingURI(): String {
-        return "?fields=name,picture&limit=5000&access_token="
+        attendeeRequestService.userEventStatus = listOf(Attending(), Interested(), Declined())
+        return  attendeeRequestService
     }
 
 }

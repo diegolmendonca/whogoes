@@ -1,7 +1,6 @@
 package goes.who.whogoes.di
 
 import android.app.Application
-import goes.who.whogoes.di.DaggerApplicationComponent
 
 /**
  * Created by Diego Mendonca on 01.09.2017.

@@ -7,11 +7,11 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.widget.ProgressBar
 import android.widget.Toast
-import goes.who.whogoes.di.MyApplication
 import goes.who.whogoes.R
 import goes.who.whogoes.adapter.EventResponseAdapter
-import goes.who.whogoes.service.HttpService
-import goes.who.whogoes.service.RequestModel
+import goes.who.whogoes.di.MyApplication
+import goes.who.whogoes.model.RequestModel
+import goes.who.whogoes.service.request.EventRequestService
 import kotlinx.coroutines.experimental.android.UI
 import kotlinx.coroutines.experimental.launch
 import java.io.IOException
@@ -19,7 +19,7 @@ import javax.inject.Inject
 
 class EventFinderResponseActivity : AppCompatActivity() {
     @Inject
-    lateinit var httpService: HttpService
+    lateinit var eventRequestService: EventRequestService
 
     private lateinit var responseList: RecyclerView
     private lateinit var mProgressBar: ProgressBar
@@ -58,7 +58,7 @@ class EventFinderResponseActivity : AppCompatActivity() {
 
         launch(UI) {
             try {
-                val result = httpService.performCall2(request).await()
+                val result = eventRequestService.performCall(request).await()
                 eventResponseAdapter.setElements(result)
                 eventResponseAdapter.notifyDataSetChanged()
                 responseList.setVisibility(View.VISIBLE)

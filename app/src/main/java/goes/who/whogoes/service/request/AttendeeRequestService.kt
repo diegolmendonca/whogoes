@@ -1,8 +1,10 @@
-package goes.who.whogoes.service
+package goes.who.whogoes.service.request
 
 import goes.who.whogoes.di.MyApplication
 import goes.who.whogoes.model.Datum
-import goes.who.whogoes.model.DatumEvent
+import goes.who.whogoes.model.RequestModel
+import goes.who.whogoes.model.UserEventStatus
+import goes.who.whogoes.service.response.AttendeeResponseService
 import kotlinx.coroutines.experimental.CommonPool
 import kotlinx.coroutines.experimental.Deferred
 import kotlinx.coroutines.experimental.async
@@ -12,19 +14,17 @@ import javax.inject.Inject
 import javax.inject.Named
 import javax.inject.Singleton
 
-
 /**
- * Created by Diego Mendonca on 08.09.2017.
+ * Created by Diego Mendonca on 21.09.2017.
  */
-
 @Singleton
-class HttpService {
+class AttendeeRequestService : HttpService<List<Deferred<List<Datum>>>> {
 
     @Inject
     lateinit var httpClient: OkHttpClient
 
     @Inject
-    lateinit var responseService: ResponseService
+    lateinit var attendeeResponseService: AttendeeResponseService
 
     // todo: try to inject it
     lateinit var userEventStatus: List<UserEventStatus>
@@ -39,7 +39,7 @@ class HttpService {
         MyApplication.graph.inject(this)
     }
 
-    fun performCall(request : RequestModel): List<Deferred<List<Datum>>> {
+    override fun performCall(request : RequestModel): List<Deferred<List<Datum>>> {
         return userEventStatus.map { stat ->
             async(CommonPool) {
                 call(baseURI + request.eventID + "/" + stat.status() + remainingURI + request.token, stat.status(), request.name)
@@ -47,29 +47,11 @@ class HttpService {
         }
     }
 
-    fun performCall2(request : RequestModel): Deferred<List<DatumEvent>> {
-
-      return  async(CommonPool) {
-        call2(baseURI + "search?q=" +
-                request.eventID +
-                "&type=event&limit=500&fields=name%2Ccover%2Cattending_count%2Cinterested_count%2Cdeclined_count%2Cstart_time&access_token=" +
-                request.token)
-        }
-
-    }
-
-    private fun call2(url: String?): List<DatumEvent> {
-        val request = Request.Builder().url(url).build()
-        val httpResponse = httpClient.newCall(request).execute()
-        val formattedResponse = responseService.transform2(httpResponse)
-        return formattedResponse.datum
-    }
-
     private fun call(url: String?, stat: String, name:String): List<Datum> {
         println("CALLING:" + stat)
         val request = Request.Builder().url(url).build()
         val httpResponse = httpClient.newCall(request).execute()
-        val formattedResponse = responseService.transform(httpResponse, stat, name)
+        val formattedResponse = attendeeResponseService.processResponse(httpResponse, stat, name)
 
         if (formattedResponse.nextURL.isNullOrEmpty()){
             println("ACABANDO: " + stat)

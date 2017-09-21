@@ -1,4 +1,4 @@
-package goes.who.whogoes.service
+package goes.who.whogoes.model
 
 import goes.who.whogoes.model.Datum
 import goes.who.whogoes.model.DatumEvent

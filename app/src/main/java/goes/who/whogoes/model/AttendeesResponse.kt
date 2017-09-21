@@ -1,7 +1,5 @@
 package goes.who.whogoes.model
 
-import goes.who.whogoes.service.UserEventStatus
-
 /**
  * Created by Diego Mendonca on 30.08.2017.
  */
