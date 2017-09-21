@@ -12,13 +12,11 @@ import android.view.View
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
-import goes.who.whogoes.di.MyApplication
 import goes.who.whogoes.R
 import goes.who.whogoes.adapter.AttendeesResponseAdapter
-import goes.who.whogoes.service.request.HttpService
+import goes.who.whogoes.di.MyApplication
 import goes.who.whogoes.model.RequestModel
 import goes.who.whogoes.service.request.AttendeeRequestService
-import goes.who.whogoes.service.request.EventRequestService
 import kotlinx.coroutines.experimental.android.UI
 import kotlinx.coroutines.experimental.launch
 import java.io.IOException

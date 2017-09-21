@@ -6,7 +6,7 @@ import javax.inject.Named
 import javax.inject.Singleton
 
 /**
- * Created by doma on 21.09.2017.
+ * Created by Diego Mendonca on 21.09.2017.
  */
 
 @Module
