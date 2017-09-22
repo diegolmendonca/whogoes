@@ -42,33 +42,34 @@ class AttendeeRequestService : HttpService<List<Deferred<List<Datum>>>> {
         MyApplication.graph.inject(this)
     }
 
-    override fun performCall(request : RequestModel): List<Deferred<List<Datum>>> {
+    override fun performCall(request: RequestModel): List<Deferred<List<Datum>>> {
         return userEventStatus.map { stat ->
 
             async(CommonPool) {
-                call(baseURI + request.eventID + "/" + stat.status() + remainingURI + request.token, stat.status(), request.name)
+                call(baseURI + request.eventID + "/" + stat.status() + remainingURI + request.token, stat.status(), request.name, emptyList())
             }
         }
     }
 
-    private fun call(url: String?, stat: String, name:String): List<Datum> {
-            println("CALLING:" + stat)
-            val request = Request.Builder().url(url).build()
+    private fun call(url: String?, stat: String, name: String, acc : List<Datum>): List<Datum> {
+        println("CALLING:" + stat)
+        val request = Request.Builder().url(url).build()
 
-            val httpResponse = httpClient.newCall(request).execute()
+        val httpResponse = httpClient.newCall(request).execute()
 
-            // retrying failed request
-            if(httpResponse.code() == 500){
-                call(url,stat,name)
-                Log.i("repetindo", "repetindo isso $url" )
-            }
+        // retrying failed request
+        if (httpResponse.code() == 500) {
+            Log.i("repetindo", "repetindo isso $url")
+            return call(url, stat, name,acc)
+        }
 
-            val formattedResponse = attendeeResponseService.processResponse(httpResponse, stat, name)
+        val formattedResponse = attendeeResponseService.processResponse(httpResponse, stat, name)
 
-            if (formattedResponse?.nextURL.isNullOrEmpty()) {
-                println("ACABANDO: " + stat)
-                return formattedResponse.datum
-            }
-            return formattedResponse.datum.plus(call(formattedResponse.nextURL, stat, name))
+        if (formattedResponse?.nextURL.isNullOrEmpty()) {
+            println("ACABANDO: " + stat)
+            return acc
+        }
+
+        return call(formattedResponse.nextURL, stat, name, formattedResponse.datum.plus(acc))
     }
 }
