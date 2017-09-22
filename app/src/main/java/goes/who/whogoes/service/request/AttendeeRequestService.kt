@@ -1,5 +1,6 @@
 package goes.who.whogoes.service.request
 
+import android.util.Log
 import goes.who.whogoes.di.MyApplication
 import goes.who.whogoes.model.Datum
 import goes.who.whogoes.model.RequestModel
@@ -10,6 +11,8 @@ import kotlinx.coroutines.experimental.Deferred
 import kotlinx.coroutines.experimental.async
 import okhttp3.OkHttpClient
 import okhttp3.Request
+import java.time.Duration
+import java.time.LocalDateTime
 import javax.inject.Inject
 import javax.inject.Named
 import javax.inject.Singleton
@@ -41,6 +44,7 @@ class AttendeeRequestService : HttpService<List<Deferred<List<Datum>>>> {
 
     override fun performCall(request : RequestModel): List<Deferred<List<Datum>>> {
         return userEventStatus.map { stat ->
+
             async(CommonPool) {
                 call(baseURI + request.eventID + "/" + stat.status() + remainingURI + request.token, stat.status(), request.name)
             }
@@ -48,16 +52,23 @@ class AttendeeRequestService : HttpService<List<Deferred<List<Datum>>>> {
     }
 
     private fun call(url: String?, stat: String, name:String): List<Datum> {
-        println("CALLING:" + stat)
-        val request = Request.Builder().url(url).build()
-        val httpResponse = httpClient.newCall(request).execute()
-        val formattedResponse = attendeeResponseService.processResponse(httpResponse, stat, name)
+            println("CALLING:" + stat)
+            val request = Request.Builder().url(url).build()
 
-        if (formattedResponse.nextURL.isNullOrEmpty()){
-            println("ACABANDO: " + stat)
-            return formattedResponse.datum
-        }
-        return formattedResponse.datum.plus(call(formattedResponse.nextURL, stat, name))
+            val httpResponse = httpClient.newCall(request).execute()
+
+            // retrying failed request
+            if(httpResponse.code() == 500){
+                call(url,stat,name)
+                Log.i("repetindo", "repetindo isso $url" )
+            }
+
+            val formattedResponse = attendeeResponseService.processResponse(httpResponse, stat, name)
+
+            if (formattedResponse?.nextURL.isNullOrEmpty()) {
+                println("ACABANDO: " + stat)
+                return formattedResponse.datum
+            }
+            return formattedResponse.datum.plus(call(formattedResponse.nextURL, stat, name))
     }
-
 }
