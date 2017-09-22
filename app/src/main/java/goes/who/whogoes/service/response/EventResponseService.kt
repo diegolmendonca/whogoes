@@ -28,6 +28,7 @@ class EventResponseService: ResponseService<ExampleEvent> {
 
     fun processResponse(response: Response): ResponseModel2 {
         val topic = transform(response)
+        response.body()?.close()
         return ResponseModel2(topic.data)
     }
 

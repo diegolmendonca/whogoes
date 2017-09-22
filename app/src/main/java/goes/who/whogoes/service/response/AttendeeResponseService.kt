@@ -30,6 +30,7 @@ class AttendeeResponseService: ResponseService<Example> {
 
     fun processResponse(response: Response, stat: String, name: String): ResponseModel {
         val topic = transform(response)
+        response.body()?.close()
         val res: List<Datum> = topic.data.filter { x -> x.name.contains(name) }
         val next = if (topic.paging != null)  topic.paging.next else null
         val categorizedStatus = res.map { x -> x.copy(status = stat) }
