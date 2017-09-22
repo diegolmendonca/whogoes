@@ -34,9 +34,9 @@ class AndroidModule(private val application: Application) {
     @Singleton
     fun provideClient(): OkHttpClient {
         val okHttpClientBuilder: OkHttpClient.Builder = OkHttpClient.Builder()
-        okHttpClientBuilder.connectTimeout(30, TimeUnit.SECONDS)
-        okHttpClientBuilder.readTimeout(30, TimeUnit.SECONDS)
-        okHttpClientBuilder.writeTimeout(30, TimeUnit.SECONDS)
+        okHttpClientBuilder.connectTimeout(90, TimeUnit.SECONDS)
+        okHttpClientBuilder.readTimeout(90, TimeUnit.SECONDS)
+        okHttpClientBuilder.writeTimeout(90, TimeUnit.SECONDS)
         return okHttpClientBuilder.build()
     }
 

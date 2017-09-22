@@ -50,8 +50,11 @@ class EventFinderResponseActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
 
+
+        val eventName = intent.getStringExtra("eventName")
+
         val request = RequestModel(
-                intent.getStringExtra("eventName"),
+                eventName,
                 "",
                 facebookToken
         )
@@ -63,6 +66,9 @@ class EventFinderResponseActivity : AppCompatActivity() {
                 eventResponseAdapter.notifyDataSetChanged()
                 responseList.setVisibility(View.VISIBLE)
                 mProgressBar.setVisibility(View.GONE)
+
+                if (result.size == 0)
+                    Toast.makeText(this@EventFinderResponseActivity, "No event found with the following name:$eventName", Toast.LENGTH_SHORT).show()
 
             } catch (exception: IOException) {
                 Toast.makeText(this@EventFinderResponseActivity, "Service timed out. Please check your internet connection and try again", Toast.LENGTH_SHORT).show()

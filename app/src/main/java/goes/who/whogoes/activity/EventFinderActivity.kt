@@ -40,7 +40,7 @@ class EventFinderActivity : AppCompatActivity() {
 
     fun isValidInput(eventId: EditText): Boolean{
         if(eventId.text.isNullOrEmpty()){
-            eventId.setError("Please input a Facebook event Id")
+            eventId.setError("Please input a Facebook event Name")
             return false
         }
         return true

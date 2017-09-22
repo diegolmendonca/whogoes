@@ -55,9 +55,11 @@ class EventActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
 
+        val userName = intent.getStringExtra("name")
+
         val request = RequestModel(
                 intent.getStringExtra("datumEventId"),
-                intent.getStringExtra("name"),
+                userName,
                 intent.getStringExtra("FACEBOOK_TOKEN")
         )
 
@@ -70,6 +72,12 @@ class EventActivity : AppCompatActivity() {
                 responseAdapter.notifyDataSetChanged()
                 responseList.setVisibility(View.VISIBLE)
                 mProgressBar.setVisibility(View.GONE)
+
+                if (result.size == 0)
+                    Toast.makeText(this@EventActivity, "No user with name:$userName found for this event ", Toast.LENGTH_SHORT).show()
+
+
+
             } catch (exception: IOException) {
                 Toast.makeText(this@EventActivity, "Service timed out. Please check your internet connection and try again", Toast.LENGTH_SHORT).show()
             }
