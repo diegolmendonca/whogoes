@@ -3,9 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://C:\Users\NSilva2\dev\personal_repo\whogoes\app\app.iml" filepath="C:\Users\NSilva2\dev\personal_repo\whogoes\app\app.iml" />
       <module fileurl="file://$PROJECT_DIR$/whogoes.iml" filepath="$PROJECT_DIR$/whogoes.iml" />
-      <module fileurl="file://C:\Users\NSilva2\dev\personal_repo\whogoes\whogoes.iml" filepath="C:\Users\NSilva2\dev\personal_repo\whogoes\whogoes.iml" />
     </modules>
   </component>
 </project>
