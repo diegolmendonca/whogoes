@@ -24,9 +24,11 @@ class AttendeesResponseAdapter(val act: Activity, var responseList: List<Datum>)
 
     override fun onBindViewHolder(holder: ResponseViewHolder, position: Int) {
         val item = responseList[position]
+        val darkGreen = Color.parseColor("#006400");
+
 
         when(item.status) {
-            "attending/" -> holder.title.setTextColor(Color.GREEN)
+            "attending/" -> holder.title.setTextColor(darkGreen)
             "interested/" -> holder.title.setTextColor(Color.BLUE)
             "declined/" -> holder.title.setTextColor(Color.RED)
         }
