@@ -30,10 +30,12 @@ class AttendeeResponseService: ResponseService<Example> {
 
     fun processResponse(response: Response, stat: String, name: String): ResponseModel {
         val topic = transform(response)
-        response.body()?.close()
-        val res: List<Datum> = topic.data.filter { x -> x.name.contains(name) }
+        val res: List<Datum> = if(topic.data != null && topic.data.isNotEmpty())
+            topic.data.filter { x -> x.name.contains(name)  }
+                else emptyList()
         val next = if (topic.paging != null)  topic.paging.next else null
         val categorizedStatus = res.map { x -> x.copy(status = stat) }
+        response.body()?.close()
         return ResponseModel(categorizedStatus, next)
     }
 
