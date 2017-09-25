@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.View
 import android.widget.ProgressBar
 import android.widget.TextView
@@ -26,6 +27,8 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 import javax.inject.Named
 
+
+//TODO: Remove srevice from event activity. Maybe adding broadcast
 class EventActivity : AppCompatActivity() {
     @Inject
     lateinit var attendeeRequestService: AttendeeRequestService
@@ -86,6 +89,7 @@ class EventActivity : AppCompatActivity() {
     }
 
     private fun loadJSON(url: String, status: String) {
+        Log.d("calling " , "  status: $status ----->    $url")
         mCompositeDisposable.add(facebookRequestInterface.getDatum(url)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
@@ -95,8 +99,6 @@ class EventActivity : AppCompatActivity() {
     }
 
     private fun handleResponse(androidList: Example, status: String) {
-
-
         val userName = intent.getStringExtra("name")
 
         val filtered = androidList.data.filter { x -> x.name.contains(userName) }
@@ -124,8 +126,9 @@ class EventActivity : AppCompatActivity() {
     }
 
     private fun handleError(error: Throwable, url: String,status: String) {
+        val stack = error.printStackTrace()
+        Log.e("error calling " , "  msg: $stack")
         loadJSON(url, status)
-        Toast.makeText(this, "Error " + error.localizedMessage, Toast.LENGTH_SHORT).show()
     }
 
     public override fun onDestroy() {
