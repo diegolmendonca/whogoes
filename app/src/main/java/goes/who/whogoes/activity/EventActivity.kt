@@ -13,7 +13,6 @@ import android.view.View
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
-import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import goes.who.whogoes.R
 import goes.who.whogoes.adapter.AttendeesResponseAdapter
 import goes.who.whogoes.di.MyApplication
@@ -24,14 +23,15 @@ import goes.who.whogoes.service.response.AttendeeResponseService
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Inject
 import javax.inject.Named
 
 class EventActivity : AppCompatActivity() {
     @Inject
     lateinit var attendeeRequestService: AttendeeRequestService
+
+    @Inject
+    lateinit var facebookRequestInterface: FacebookRequestInterface
 
     private lateinit var responseList: RecyclerView
     private lateinit var mProgressBar: ProgressBar
@@ -86,13 +86,7 @@ class EventActivity : AppCompatActivity() {
     }
 
     private fun loadJSON(url: String, status: String) {
-        val requestInterface = Retrofit.Builder()
-                .baseUrl(baseURI)
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
-                .build().create(FacebookRequestInterface::class.java)
-
-        mCompositeDisposable.add(requestInterface.getDatum(url)
+        mCompositeDisposable.add(facebookRequestInterface.getDatum(url)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe({ resultList -> handleResponse(resultList, status) },
@@ -123,51 +117,16 @@ class EventActivity : AppCompatActivity() {
             if (latch == 0) {
                 responseList.setVisibility(View.VISIBLE)
                 mProgressBar.setVisibility(View.GONE)
-                title.text = "FINAL RESULT: " + (responseAdapter.getElements().size + mAndroidArrayList.size) + " people found"
+                title.text = "FINAL RESULT: " + (responseAdapter.getElements().size) + " people found"
                 Toast.makeText(this, "SEARCH FINISHED ", Toast.LENGTH_SHORT).show()
             }
         }
-
     }
 
     private fun handleError(error: Throwable, url: String,status: String) {
         loadJSON(url, status)
         Toast.makeText(this, "Error " + error.localizedMessage, Toast.LENGTH_SHORT).show()
     }
-
-    override fun onResume() {
-        super.onResume()
-
-        val userName = intent.getStringExtra("name")
-
-        val request = RequestModel(
-                intent.getStringExtra("datumEventId"),
-                userName,
-                intent.getStringExtra("FACEBOOK_TOKEN")
-        )
-
-
-//        launch(UI) {
-//            try {
-//                val result = attendeeRequestService.performCall(request).flatMap { statusCall ->
-//                    statusCall.await()
-//                }
-//                responseAdapter.setElements(result)
-//                responseAdapter.notifyDataSetChanged()
-//                responseList.setVisibility(View.VISIBLE)
-//                mProgressBar.setVisibility(View.GONE)
-//
-//                if (result.size == 0)
-//                    Toast.makeText(this@EventActivity, "No user with name:$userName found for this event ", Toast.LENGTH_SHORT).show()
-//
-//
-//
-//            } catch (exception: IOException) {
-//                Toast.makeText(this@EventActivity, "Service timed out. Please check your internet connection and try again", Toast.LENGTH_SHORT).show()
-//            }
-//        }
-    }
-
 
     public override fun onDestroy() {
         super.onDestroy()

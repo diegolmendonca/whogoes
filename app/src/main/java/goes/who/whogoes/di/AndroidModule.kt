@@ -8,6 +8,7 @@ package goes.who.whogoes.di
 import android.app.Application
 import android.content.Context
 import com.google.gson.Gson
+import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import dagger.Module
 import dagger.Provides
 import goes.who.whogoes.model.Attending
@@ -15,9 +16,12 @@ import goes.who.whogoes.model.Declined
 import goes.who.whogoes.model.Interested
 import goes.who.whogoes.service.request.AttendeeRequestService
 import goes.who.whogoes.service.request.EventRequestService
+import goes.who.whogoes.service.request.FacebookRequestInterface
 import goes.who.whogoes.service.response.AttendeeResponseService
 import goes.who.whogoes.service.response.EventResponseService
 import okhttp3.OkHttpClient
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
@@ -38,6 +42,16 @@ class AndroidModule(private val application: Application) {
         okHttpClientBuilder.readTimeout(90, TimeUnit.SECONDS)
         okHttpClientBuilder.writeTimeout(90, TimeUnit.SECONDS)
         return okHttpClientBuilder.build()
+    }
+
+    @Provides
+    @Singleton
+    fun provideFacebookRequestInterface(): FacebookRequestInterface {
+        return Retrofit.Builder()
+                .baseUrl("https://abc.com")
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build().create(FacebookRequestInterface::class.java)
     }
 
     @Provides
