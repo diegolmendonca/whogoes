@@ -22,6 +22,10 @@ class AttendeesResponseAdapter(val act: Activity, var responseList: List<Datum>)
         responseList = elements
     }
 
+    fun getElements(): List<Datum> {
+        return responseList
+    }
+
     override fun onBindViewHolder(holder: ResponseViewHolder, position: Int) {
         val item = responseList[position]
         val darkGreen = Color.parseColor("#006400");

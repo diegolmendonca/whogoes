@@ -1,16 +1,21 @@
 package goes.who.whogoes.service.request
 
 import android.util.Log
+import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import goes.who.whogoes.di.MyApplication
 import goes.who.whogoes.model.Datum
 import goes.who.whogoes.model.RequestModel
 import goes.who.whogoes.model.UserEventStatus
 import goes.who.whogoes.service.response.AttendeeResponseService
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import kotlinx.coroutines.experimental.CommonPool
 import kotlinx.coroutines.experimental.Deferred
 import kotlinx.coroutines.experimental.async
 import okhttp3.OkHttpClient
 import okhttp3.Request
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import java.time.Duration
 import java.time.LocalDateTime
 import javax.inject.Inject
@@ -41,6 +46,7 @@ class AttendeeRequestService : HttpService<List<Deferred<List<Datum>>>> {
     constructor() {
         MyApplication.graph.inject(this)
     }
+
 
     override fun performCall(request: RequestModel): List<Deferred<List<Datum>>> {
         return userEventStatus.map { stat ->
