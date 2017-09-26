@@ -34,8 +34,6 @@ import javax.inject.Named
  */
 
 class EventActivity : AppCompatActivity() {
-    @Inject
-    lateinit var attendeeRequestService: AttendeeRequestService
 
     @Inject
     lateinit var facebookRequestInterface: FacebookRequestInterface
@@ -105,18 +103,7 @@ class EventActivity : AppCompatActivity() {
     private fun handleResponse(androidList: Example, status: String) {
         val userName = intent.getStringExtra("name")
 
-        val filtered = androidList.data.filter { x -> x.name.contains(userName) }
-
-
-     val result =   when(status) {
-            "attending/" -> Interested()
-            "declined/" -> Declined()
-            else -> Attending()
-        }
-
-        val categorizedStatus = filtered.map { x -> x.copy(status = result) }
-
-        mAndroidArrayList = categorizedStatus
+        mAndroidArrayList = attendeeResponseService.processResponse(status, userName, androidList)
         val partialResultString = getString(R.string.partial_result, responseAdapter.getElements().size + mAndroidArrayList.size)
         title.text = partialResultString
         title.setTextColor(Color.RED)
