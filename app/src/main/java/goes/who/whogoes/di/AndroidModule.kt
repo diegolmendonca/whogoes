@@ -48,7 +48,7 @@ class AndroidModule(private val application: Application) {
     @Singleton
     fun provideFacebookRequestInterface(): FacebookRequestInterface {
         return Retrofit.Builder()
-                .baseUrl("https://abc.com")
+                .baseUrl("https://abc.com")  // dummy, I dont use it, as the URL are dynamically generated
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build().create(FacebookRequestInterface::class.java)

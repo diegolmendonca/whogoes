@@ -15,10 +15,12 @@ import android.widget.TextView
 import com.squareup.picasso.Picasso
 import goes.who.whogoes.R
 import goes.who.whogoes.model.Datum
+import goes.who.whogoes.model.Declined
+import goes.who.whogoes.model.Interested
 
-class AttendeesResponseAdapter(val act: Activity, var responseList: List<Datum>) : RecyclerView.Adapter<ResponseViewHolder>(){
+class AttendeesResponseAdapter(val act: Activity, var responseList: List<Datum>) : RecyclerView.Adapter<ResponseViewHolder>() {
 
-    fun setElements(elements : List<Datum>){
+    fun setElements(elements: List<Datum>) {
         responseList = elements
     }
 
@@ -28,15 +30,17 @@ class AttendeesResponseAdapter(val act: Activity, var responseList: List<Datum>)
 
     override fun onBindViewHolder(holder: ResponseViewHolder, position: Int) {
         val item = responseList[position]
-        val darkGreen = Color.parseColor("#006400");
 
+        holder.title.setTextColor(item.status.color())
 
-        when(item.status) {
-            "attending/" -> holder.title.setTextColor(darkGreen)
-            "interested/" -> holder.title.setTextColor(Color.BLUE)
-            "declined/" -> holder.title.setTextColor(Color.RED)
+        val message = when (item.status) {
+            is Interested -> act.getString(R.string.interested)
+            is Declined -> act.getString(R.string.declined)
+            else -> act.getString(R.string.attending)
+
         }
-        holder.title.text = item.status.substring(0, item.status.length-1).toUpperCase()
+
+        holder.title.text = message.toUpperCase()
         holder.body.text = item.name
         holder.body.setTextColor(Color.BLACK)
         Picasso.with(act.applicationContext).load(item.picture.data.url).into(holder.image)
@@ -55,4 +59,4 @@ class AttendeesResponseAdapter(val act: Activity, var responseList: List<Datum>)
     }
 }
 
-data class ResponseViewHolder(val view: View, val title : TextView, val body: TextView, val image: ImageView) : RecyclerView.ViewHolder(view)
+data class ResponseViewHolder(val view: View, val title: TextView, val body: TextView, val image: ImageView) : RecyclerView.ViewHolder(view)

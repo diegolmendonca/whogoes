@@ -26,7 +26,7 @@ import javax.inject.Singleton
  * Created by Diego Mendonca on 21.09.2017.
  */
 @Singleton
-class AttendeeRequestService : HttpService<List<Deferred<List<Datum>>>> {
+class AttendeeRequestService  {
 
     @Inject
     lateinit var httpClient: OkHttpClient
@@ -47,35 +47,36 @@ class AttendeeRequestService : HttpService<List<Deferred<List<Datum>>>> {
         MyApplication.graph.inject(this)
     }
 
-
-    override fun performCall(request: RequestModel): List<Deferred<List<Datum>>> {
-        return userEventStatus.map { stat ->
-
-            async(CommonPool) {
-                call(baseURI + request.eventID + "/" + stat.status() + remainingURI + request.token, stat.status(), request.name, emptyList())
-            }
-        }
-    }
-
-    private fun call(url: String?, stat: String, name: String, acc : List<Datum>): List<Datum> {
-        println("CALLING:" + stat)
-        val request = Request.Builder().url(url).build()
-
-        val httpResponse = httpClient.newCall(request).execute()
-
-        // retrying failed request
-        if (httpResponse.code() == 500) {
-            Log.i("repetindo", "repetindo isso $url")
-            return call(url, stat, name,acc)
-        }
-
-        val formattedResponse = attendeeResponseService.processResponse(httpResponse, stat, name)
-
-        if (formattedResponse?.nextURL.isNullOrEmpty()) {
-            println("ACABANDO: " + stat)
-            return acc
-        }
-
-        return call(formattedResponse.nextURL, stat, name, formattedResponse.datum.plus(acc))
-    }
+//
+//    override fun performCall(request: RequestModel): List<Deferred<List<Datum>>> {
+//        return userEventStatus.map { stat ->
+//
+//            async(CommonPool) {
+//                call(baseURI + request.eventID + "/" + stat.status() + remainingURI + request.token, stat.status(), request.name, emptyList())
+//            }
+//        }
+//    }
+//
+//    private fun call(url: String?, stat: String, name: String, acc : List<Datum>): List<Datum> {
+//        Log.d("CALLING:" ,   "$stat ---> $url")
+//        val request = Request.Builder().url(url).build()
+//
+//        val httpResponse = httpClient.newCall(request).execute()
+//
+//        // retrying failed request
+//        // improve it, otherwise we can end up with an infinite loop
+//        if (httpResponse.code() == 500) {
+//            Log.d("REQUEST FAILED", "retrying the following request $url")
+//            return call(url, stat, name,acc)
+//        }
+//
+//        val formattedResponse = attendeeResponseService.processResponse(httpResponse, stat, name)
+//
+//        if (formattedResponse?.nextURL.isNullOrEmpty()) {
+//            Log.d("FINISHING ITERATION", "iteration for $stat done")
+//            return acc
+//        }
+//
+//        return call(formattedResponse.nextURL, stat, name, formattedResponse.datum.plus(acc))
+//    }
 }

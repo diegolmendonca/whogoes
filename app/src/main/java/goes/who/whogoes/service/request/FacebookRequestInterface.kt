@@ -7,7 +7,7 @@ import retrofit2.http.GET
 import retrofit2.http.Url
 
 /**
- * Created by doma on 25.09.2017.
+ * Created by Diego Mendonca on 25.09.2017.
  */
 interface FacebookRequestInterface {
 

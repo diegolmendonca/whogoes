@@ -46,7 +46,7 @@ class InputActivity : AppCompatActivity() {
 
     fun isValidInput(name: EditText): Boolean{
          if(name.text.isNullOrEmpty()){
-            name.setError("Please input a person name")
+            name.setError(getString(R.string.user_name_error))
             return false
         }
         return true

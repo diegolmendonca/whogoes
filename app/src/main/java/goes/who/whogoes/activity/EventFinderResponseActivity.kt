@@ -68,12 +68,13 @@ class EventFinderResponseActivity : AppCompatActivity() {
                 mProgressBar.setVisibility(View.GONE)
 
                 if (result.size == 0)
-                    Toast.makeText(this@EventFinderResponseActivity, "No event found with the following name:$eventName", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@EventFinderResponseActivity, getString(R.string.facebook_event_no_found, eventName), Toast.LENGTH_SHORT).show()
 
             } catch (exception: IOException) {
-                Toast.makeText(this@EventFinderResponseActivity, "Service timed out. Please check your internet connection and try again", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@EventFinderResponseActivity, getString(R.string.internet_issues), Toast.LENGTH_SHORT).show()
             }
 
         }
     }
 }
+

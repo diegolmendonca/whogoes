@@ -2,6 +2,7 @@ package goes.who.whogoes.adapter
 
 import android.app.Activity
 import android.content.Intent
+import android.content.res.Resources
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -29,9 +30,9 @@ class EventResponseAdapter(val act: Activity, var responseList: List<DatumEvent>
         val outgoingFormat = SimpleDateFormat(" EEEE, dd MMMM yyyy")
 
 
-        holder.attending.text = "Attending:" + item.attending_count.toString()
-        holder.interested.text = "Interested:" + item.interested_count.toString()
-        holder.declined.text = "Declined:" + item.declined_count.toString()
+        holder.attending.text = act.getString(R.string.attending).toUpperCase() + ":" + item.attending_count.toString()
+        holder.interested.text = act.getString(R.string.interested).toUpperCase() + ":" + item.interested_count.toString()
+        holder.declined.text = act.getString(R.string.declined).toUpperCase() + ":" + item.declined_count.toString()
         holder.date.text = outgoingFormat.format(date)
         holder.name.text = item.name
         Picasso.with(act.applicationContext).load(item.cover?.source).into(holder.image)

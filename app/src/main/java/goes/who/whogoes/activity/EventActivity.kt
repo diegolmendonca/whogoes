@@ -28,7 +28,11 @@ import javax.inject.Inject
 import javax.inject.Named
 
 
-//TODO: Remove srevice from event activity. Maybe adding broadcast
+/** TODO: Remove srevice from event activity. However, service needes
+* to return results to activity, in order to updte progress bar and list adapter.
+* Consider using broadcast or something similar
+ */
+
 class EventActivity : AppCompatActivity() {
     @Inject
     lateinit var attendeeRequestService: AttendeeRequestService
@@ -102,10 +106,19 @@ class EventActivity : AppCompatActivity() {
         val userName = intent.getStringExtra("name")
 
         val filtered = androidList.data.filter { x -> x.name.contains(userName) }
-        val categorizedStatus = filtered.map { x -> x.copy(status = status) }
+
+
+     val result =   when(status) {
+            "attending/" -> Interested()
+            "declined/" -> Declined()
+            else -> Attending()
+        }
+
+        val categorizedStatus = filtered.map { x -> x.copy(status = result) }
 
         mAndroidArrayList = categorizedStatus
-        title.text = "PARTIAL RESULT: " + (responseAdapter.getElements().size + mAndroidArrayList.size) + " people found...."
+        val partialResultString = getString(R.string.partial_result, responseAdapter.getElements().size + mAndroidArrayList.size)
+        title.text = partialResultString
         title.setTextColor(Color.RED)
         responseAdapter.setElements(responseAdapter.getElements().plus(mAndroidArrayList))
         responseAdapter.notifyDataSetChanged()
@@ -119,8 +132,9 @@ class EventActivity : AppCompatActivity() {
             if (latch == 0) {
                 responseList.setVisibility(View.VISIBLE)
                 mProgressBar.setVisibility(View.GONE)
-                title.text = "FINAL RESULT: " + (responseAdapter.getElements().size) + " people found"
-                Toast.makeText(this, "SEARCH FINISHED ", Toast.LENGTH_SHORT).show()
+                val finalResultString = getString(R.string.final_result, responseAdapter.getElements().size)
+                title.text = finalResultString
+                Toast.makeText(this, getString(R.string.search_finished), Toast.LENGTH_SHORT).show()
             }
         }
     }
