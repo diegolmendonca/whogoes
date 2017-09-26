@@ -11,16 +11,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical|center_horizontal"
-        android:layout_marginBottom="299dp"
+        android:layout_marginBottom="412dp"
         android:layout_marginEnd="103dp"
         android:layout_marginStart="103dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteX="103dp"
-        tools:layout_editor_absoluteY="242dp"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="242dp" />
+        android:layout_marginTop="73dp" />
 
 </android.support.constraint.ConstraintLayout>

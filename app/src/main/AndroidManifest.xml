@@ -19,30 +19,32 @@
         <activity
             android:name=".activity.MainActivity"
             android:label="@string/title_activity_main"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
         <activity
-        android:name=".activity.EventFinderActivity"
-        android:label="@string/title_activity_event"
-        android:theme="@style/AppTheme.NoActionBar" />
-
+            android:name=".activity.EventFinderActivity"
+            android:label="@string/title_activity_event"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activity.EventFinderResponseActivity"
             android:label="@string/title_activity_event"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity
             android:name=".activity.AttendeeActivity"
             android:label="@string/title_activity_event"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".activity.InputActivity"></activity>
+        <activity android:name=".activity.InputActivity" />
+
+
+        <activity
+            android:name=".activity.SplashActivity"
+            android:theme="@style/SplashTheme">
+        </activity>
     </application>
 
 </manifest>

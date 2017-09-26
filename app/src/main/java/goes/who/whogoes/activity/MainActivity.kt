@@ -26,6 +26,7 @@ class MainActivity : AppCompatActivity() {
         button = findViewById(R.id.login_button)
         callbackManager = CallbackManager.Factory.create()
 
+       // LoginManager.getInstance().logOut()
 
         val accessToken : AccessToken? = AccessToken.getCurrentAccessToken()
 
