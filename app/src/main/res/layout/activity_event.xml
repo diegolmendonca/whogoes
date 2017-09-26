@@ -4,7 +4,7 @@
     android:id="@+id/activity_event"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="goes.who.whogoes.activity.EventActivity">
+    tools:context="goes.who.whogoes.activity.AttendeeActivity">
 
     <ProgressBar
         android:id="@+id/progress_bar"

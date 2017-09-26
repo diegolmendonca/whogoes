@@ -35,7 +35,7 @@ class InputActivity : AppCompatActivity() {
         fire.setOnClickListener() { v ->
 
             if (isValidInput(name)) {
-                val intent = Intent(applicationContext, EventActivity::class.java)
+                val intent = Intent(applicationContext, AttendeeActivity::class.java)
                 intent.putExtra("FACEBOOK_TOKEN", token)
                 intent.putExtra("name", name.text.toString())
                 intent.putExtra("datumEventId", eventId)

@@ -39,7 +39,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
-            android:name=".activity.EventActivity"
+            android:name=".activity.AttendeeActivity"
             android:label="@string/title_activity_event"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".activity.InputActivity"></activity>

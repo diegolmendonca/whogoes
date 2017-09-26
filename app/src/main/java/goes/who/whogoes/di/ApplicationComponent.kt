@@ -1,7 +1,7 @@
 package goes.who.whogoes.di
 
 import dagger.Component
-import goes.who.whogoes.activity.EventActivity
+import goes.who.whogoes.activity.AttendeeActivity
 import goes.who.whogoes.activity.EventFinderResponseActivity
 import goes.who.whogoes.activity.MainActivity
 import goes.who.whogoes.service.request.AttendeeRequestService
@@ -23,7 +23,7 @@ interface ApplicationComponent {
     fun inject(eventResponseService: EventResponseService)
     fun inject(eventRequestService: EventRequestService)
     fun inject(attendeeRequestService: AttendeeRequestService)
-    fun inject(eventActivity: EventActivity)
+    fun inject(attendeeActivity: AttendeeActivity)
     fun inject(eventFinderResponseActivity: EventFinderResponseActivity)
 }
 
