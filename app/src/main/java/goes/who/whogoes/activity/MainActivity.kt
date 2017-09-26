@@ -4,6 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Button
 import com.facebook.*
 import com.facebook.login.LoginManager
@@ -26,7 +28,6 @@ class MainActivity : AppCompatActivity() {
         button = findViewById(R.id.login_button)
         callbackManager = CallbackManager.Factory.create()
 
-       // LoginManager.getInstance().logOut()
 
         val accessToken : AccessToken? = AccessToken.getCurrentAccessToken()
 

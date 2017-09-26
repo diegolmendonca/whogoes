@@ -3,8 +3,12 @@ package goes.who.whogoes.activity
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Button
 import android.widget.EditText
+import com.facebook.login.LoginManager
 import goes.who.whogoes.R
 
 class EventFinderActivity : AppCompatActivity() {
@@ -45,6 +49,23 @@ class EventFinderActivity : AppCompatActivity() {
         }
         return true
 
+    }
+
+
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        getMenuInflater().inflate(R.menu.menu_main, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+
+        when(item?.itemId){
+            R.id.exit -> LoginManager.getInstance().logOut()
+            R.id.reset -> LoginManager.getInstance().logOut()
+            R.id.about -> Log.d("Testind", "Testing")
+        }
+        return true
     }
 
 }

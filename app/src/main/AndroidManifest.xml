@@ -29,7 +29,7 @@
         <activity
             android:name=".activity.EventFinderActivity"
             android:label="@string/title_activity_event"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar" />
         <activity
             android:name=".activity.EventFinderResponseActivity"
             android:label="@string/title_activity_event"
@@ -41,10 +41,6 @@
         <activity android:name=".activity.InputActivity" />
 
 
-        <activity
-            android:name=".activity.SplashActivity"
-            android:theme="@style/SplashTheme">
-        </activity>
     </application>
 
 </manifest>
