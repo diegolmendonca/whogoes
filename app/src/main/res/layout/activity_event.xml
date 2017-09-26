@@ -30,6 +30,6 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:text="Step 2 of 3 : Select Event" />
+        android:text="@string/step_2_of_3" />
 </RelativeLayout>
 
