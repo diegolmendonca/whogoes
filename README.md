@@ -1,7 +1,7 @@
 # Whogoes
 
 
-Whogoes is a solution taht helps you finding potential people who are either attending or interested or have declined an specific facebook event.
+Whogoes is a solution that helps you finding potential people who are either attending or interested or have declined an specific facebook event.
 Usually, for big events, Facebook  hides the search bar which allows us to query by name. Imagine an event with 20k interested people. The only option to search for someone is to scroll the interested list until the end and then perform a browser-based search. This will probably take ages, if your browser does not freeze before the operation is completed.
 
 
