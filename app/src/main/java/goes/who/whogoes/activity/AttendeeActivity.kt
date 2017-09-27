@@ -6,7 +6,6 @@ package goes.who.whogoes.activity
 
 import android.graphics.Color
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
@@ -36,6 +35,8 @@ class AttendeeActivity : BasicActivity() {
 
     @Inject
     lateinit var facebookRequestInterface: FacebookRequestInterface
+
+    val  userEventStatus  = listOf(Attending(), Interested(), Declined())
 
     private lateinit var responseList: RecyclerView
     private lateinit var mProgressBar: ProgressBar
@@ -79,7 +80,6 @@ class AttendeeActivity : BasicActivity() {
 
         title.text = "RESULTS: "
 
-        val userEventStatus = listOf(Attending(), Interested(), Declined())
 
         userEventStatus.map { stat ->
             val url = baseURI + intent.getStringExtra("datumEventId") + "/" + stat.status() + remainingURI + intent.getStringExtra("FACEBOOK_TOKEN")

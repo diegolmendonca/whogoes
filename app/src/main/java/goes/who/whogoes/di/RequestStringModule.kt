@@ -2,6 +2,10 @@ package goes.who.whogoes.di
 
 import dagger.Module
 import dagger.Provides
+import goes.who.whogoes.model.Attending
+import goes.who.whogoes.model.Declined
+import goes.who.whogoes.model.Interested
+import goes.who.whogoes.model.UserEventStatus
 import javax.inject.Named
 import javax.inject.Singleton
 
@@ -16,6 +20,7 @@ class RequestStringModule {
     val field = "fields"
     val attendeeField = "=name,picture"
     val eventField = "=name%2Ccover%2Cattending_count%2Cinterested_count%2Cdeclined_count%2Cstart_time"
+
 
     @Provides
     @Named("baseURI")

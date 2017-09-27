@@ -11,10 +11,6 @@ import com.google.gson.Gson
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import dagger.Module
 import dagger.Provides
-import goes.who.whogoes.model.Attending
-import goes.who.whogoes.model.Declined
-import goes.who.whogoes.model.Interested
-import goes.who.whogoes.service.request.AttendeeRequestService
 import goes.who.whogoes.service.request.EventRequestService
 import goes.who.whogoes.service.request.FacebookRequestInterface
 import goes.who.whogoes.service.response.AttendeeResponseService
@@ -38,9 +34,9 @@ class AndroidModule(private val application: Application) {
     @Singleton
     fun provideClient(): OkHttpClient {
         val okHttpClientBuilder: OkHttpClient.Builder = OkHttpClient.Builder()
-        okHttpClientBuilder.connectTimeout(90, TimeUnit.SECONDS)
-        okHttpClientBuilder.readTimeout(90, TimeUnit.SECONDS)
-        okHttpClientBuilder.writeTimeout(90, TimeUnit.SECONDS)
+        okHttpClientBuilder.connectTimeout(30, TimeUnit.SECONDS)
+        okHttpClientBuilder.readTimeout(30, TimeUnit.SECONDS)
+        okHttpClientBuilder.writeTimeout(30, TimeUnit.SECONDS)
         return okHttpClientBuilder.build()
     }
 
@@ -51,6 +47,7 @@ class AndroidModule(private val application: Application) {
                 .baseUrl("https://abc.com")  // dummy, I dont use it, as the URL are dynamically generated
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
+                .client(provideClient())
                 .build().create(FacebookRequestInterface::class.java)
     }
 
@@ -79,13 +76,6 @@ class AndroidModule(private val application: Application) {
         return  eventRequestService
     }
 
-    @Provides
-    @Singleton
-    fun provideAttendeeRequestService(): AttendeeRequestService {
-        val attendeeRequestService = AttendeeRequestService()
-        // Try to inject it
-        attendeeRequestService.userEventStatus = listOf(Attending(), Interested(), Declined())
-        return  attendeeRequestService
-    }
+
 
 }
