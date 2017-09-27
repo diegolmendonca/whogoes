@@ -18,7 +18,7 @@ The event must be visible to you and searchable. Not all events have this config
 Whogoes completely relies on Facebook API. Sometimes, it responds lightinig fast, sometimes not. Please bear in mind that very big events may take a while to iterate along all the interested/attending/declined list.
 For instance, an event with 100k people is taking between 3-5 minutes. Please be patient!
 
-### Technical aspects
+# Technical aspects
 
 Please read this section if you are interested in the technical details about this project.
 Note that this is an open source project, please feel free to contribute.
@@ -38,13 +38,13 @@ On the other hand, [EventFinderResponseActivity] used OKHTTP + coroutines to con
 I dont have plans to follow only one approach in the future. I hope this source code may help other developers who want to find working examples for both approached, as it took some time for me to make them work.
 
 ``
-### Development
+# Development
 
 Want to contribute? Great!
 
 Send us suggestions or simply open your pull request
 
-### Todos
+# Todos
 
  - Write Tests
  - A few technical debts, which are described inside the source code comments
@@ -57,4 +57,4 @@ License
 MIT
 
 
-**Free Software, Hell Yeah!**
+**Free Software**
