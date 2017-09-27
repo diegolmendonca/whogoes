@@ -10,7 +10,7 @@ import mehdi.sakout.aboutpage.Element
 
 class AboutActivity : BasicActivity() {
 
-    val VERSION = "1.0"
+    val VERSION = "1.0.1"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,7 +27,7 @@ class AboutActivity : BasicActivity() {
                 .addGroup(getString(R.string.connect))
                 .addEmail("whogoesapp@gmail.com")
                 .addWebsite("http://github.com/diegolmendonca/whogoes")
-                .addPlayStore("com.ideashower.readitlater.pro")
+                .addPlayStore("goes.who.whogoes")
                 .addGitHub("diegolmendonca/whogoes")
                 .create()
 
