@@ -46,7 +46,7 @@ open class BasicActivity : AppCompatActivity() {
                     //    LoginManager.getInstance().logOut() // should I logout from facebook?
                     this.finishAffinity()
                 })
-                .setNegativeButton(getString(R.string.no), DialogInterface.OnClickListener { dialog, id -> dialog.cancel() })
+                .setNegativeButton(getString(R.string.no), DialogInterface.OnClickListener { dialog, _ -> dialog.cancel() })
         val alert = builder.create()
         alert.show()
     }
