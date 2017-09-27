@@ -1,11 +1,12 @@
 package goes.who.whogoes.activity
 
+import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
+import android.net.ConnectivityManager
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import goes.who.whogoes.R
@@ -14,10 +15,25 @@ import goes.who.whogoes.R
 open class BasicActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        getSupportActionBar()?.setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar()?.setHomeButtonEnabled(true);
-
         super.onCreate(savedInstanceState)
+
+        if (!isNetworkAvailable()) {
+
+            val builder = AlertDialog.Builder(this)
+            builder.setMessage(getString(R.string.internet))
+                    .setCancelable(false)
+                    .setPositiveButton(getString(R.string.ok), DialogInterface.OnClickListener { _, _ ->
+                        this.finishAffinity()
+                    })
+            val alert = builder.create()
+            alert.show()
+        } else {
+
+            getSupportActionBar()?.setDisplayHomeAsUpEnabled(true)
+            getSupportActionBar()?.setHomeButtonEnabled(true)
+
+
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -49,5 +65,11 @@ open class BasicActivity : AppCompatActivity() {
                 .setNegativeButton(getString(R.string.no), DialogInterface.OnClickListener { dialog, _ -> dialog.cancel() })
         val alert = builder.create()
         alert.show()
+    }
+
+    private fun isNetworkAvailable(): Boolean {
+        val connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val activeNetworkInfo = connectivityManager.activeNetworkInfo
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected
     }
 }
