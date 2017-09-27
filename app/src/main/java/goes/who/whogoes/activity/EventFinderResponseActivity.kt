@@ -17,7 +17,7 @@ import kotlinx.coroutines.experimental.launch
 import java.io.IOException
 import javax.inject.Inject
 
-class EventFinderResponseActivity : AppCompatActivity() {
+class EventFinderResponseActivity : BasicActivity() {
     @Inject
     lateinit var eventRequestService: EventRequestService
 

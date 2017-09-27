@@ -8,7 +8,7 @@ import android.widget.EditText
 import android.widget.TextView
 import goes.who.whogoes.R
 
-class InputActivity : AppCompatActivity() {
+class InputActivity : BasicActivity() {
 
     lateinit var eventName: TextView
     lateinit var name: EditText

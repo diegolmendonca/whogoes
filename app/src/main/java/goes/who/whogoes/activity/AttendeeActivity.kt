@@ -27,12 +27,12 @@ import javax.inject.Inject
 import javax.inject.Named
 
 
-/** TODO: Remove srevice from event activity. However, service needes
-* to return results to activity, in order to updte progress bar and list adapter.
+/** TODO: Remove srevice from this activity. However, service needes
+* to return results to activity, in order to update progress bar and list adapter.
 * Consider using broadcast or something similar
  */
 
-class AttendeeActivity : AppCompatActivity() {
+class AttendeeActivity : BasicActivity() {
 
     @Inject
     lateinit var facebookRequestInterface: FacebookRequestInterface

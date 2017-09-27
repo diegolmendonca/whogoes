@@ -14,7 +14,7 @@ import goes.who.whogoes.R
 import goes.who.whogoes.di.MyApplication
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BasicActivity() {
 
     lateinit  var button : Button
     lateinit  var callbackManager : CallbackManager
@@ -26,6 +26,7 @@ class MainActivity : AppCompatActivity() {
         MyApplication.graph.inject(this)
 
         button = findViewById(R.id.login_button)
+
         callbackManager = CallbackManager.Factory.create()
 
 

@@ -2,8 +2,12 @@
     <string name="app_name">Who Goes</string>
     <string name="facebook_app_id">270779473413557</string>
     <string name="fb_login_protocol_scheme">fb270779473413557</string>
-    <string name="title_activity_main">MainActivity</string>
-    <string name="title_activity_event">EventActivity</string>
+
+    <string name="title_activity_event">Find Event</string>
+    <string name="title_activity_event_response">Event Response</string>
+    <string name="title_activity_attendee">Attendee</string>
+    <string name="title_activity_main">Login</string>
+    <string name="title_activity_input">Find User</string>
     <string name="partial_result">PARTIAL RESULT: %1$d people found....</string>
     <string name="final_result">FINAL RESULT: %1$d people found</string>
     <string name="search_finished">SEARCH FINISHED</string>
@@ -22,9 +26,9 @@
     <string name="step_1_of_3"> Step 1 of 3 : Search Event by Name</string>
     <string name="step_2_of_3"> Step 2 of 3 : Select Event</string>
     <string name="step_3_of_3"> Step 3 of 3 : Type a person Name</string>
-
     <string name="logout"> Logout</string>
     <string name="about"> About</string>
-
-
+    <string name="exit"> Are you sure you want to exit?</string>
+    <string name="yes"> yes</string>
+    <string name="no"> no</string>
 </resources>
