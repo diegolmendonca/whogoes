@@ -34,7 +34,7 @@ class EventFinderActivity : BasicActivity() {
 
         val token = intent.getStringExtra("FACEBOOK_TOKEN")
 
-        fire.setOnClickListener() { v ->
+        fire.setOnClickListener() { _ ->
 
             if (isValidInput(eventName)) {
 

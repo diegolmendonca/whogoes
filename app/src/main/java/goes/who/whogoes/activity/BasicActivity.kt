@@ -1,6 +1,7 @@
 package goes.who.whogoes.activity
 
 import android.content.DialogInterface
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
@@ -29,7 +30,10 @@ open class BasicActivity : AppCompatActivity() {
         when (item?.itemId) {
             android.R.id.home -> onBackPressed()
             R.id.exit -> logout()
-            R.id.about -> Log.d("Testing", "Testing")  // implement
+            R.id.about -> {
+                val intent = Intent(applicationContext, AboutActivity::class.java)
+                startActivity(intent)
+            }
         }
         return true
     }
@@ -38,8 +42,8 @@ open class BasicActivity : AppCompatActivity() {
         val builder = AlertDialog.Builder(this)
         builder.setMessage(getString(R.string.exit))
                 .setCancelable(false)
-                .setPositiveButton(getString(R.string.yes), DialogInterface.OnClickListener { dialog, id ->
-                //    LoginManager.getInstance().logOut() // should I logout from facebook?
+                .setPositiveButton(getString(R.string.yes), DialogInterface.OnClickListener { _, _ ->
+                    //    LoginManager.getInstance().logOut() // should I logout from facebook?
                     this.finishAffinity()
                 })
                 .setNegativeButton(getString(R.string.no), DialogInterface.OnClickListener { dialog, id -> dialog.cancel() })

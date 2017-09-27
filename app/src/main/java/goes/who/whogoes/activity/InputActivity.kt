@@ -32,7 +32,7 @@ class InputActivity : BasicActivity() {
         val token = intent.getStringExtra("FACEBOOK_TOKEN")
         val eventId = intent.getStringExtra("datumEventId")
 
-        fire.setOnClickListener() { v ->
+        fire.setOnClickListener() { _ ->
 
             if (isValidInput(name)) {
                 val intent = Intent(applicationContext, AttendeeActivity::class.java)

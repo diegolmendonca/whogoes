@@ -31,4 +31,8 @@
     <string name="exit"> Are you sure you want to exit?</string>
     <string name="yes"> yes</string>
     <string name="no"> no</string>
+    <string name="connect"> Connect with us</string>
+    <string name="version"> Version: %1$s</string>
+
+    <string name="description"> Find potential friends who are either interested or attending or have declined an event in 3 simples steps: \n 1 - Find event by name \n 2 - Select target event \n 3 - Insert a person`s name. \n This is an open source project. Feel free to contribute. Check out web-site or github below for more technical details and information about this project</string>
 </resources>

@@ -41,15 +41,14 @@
             android:configChanges="orientation|screenSize"
             android:label="@string/title_activity_attendee"
             android:theme="@style/Theme.AppCompat.Light.DarkActionBar" />
-
         <activity
             android:name=".activity.InputActivity"
             android:label="@string/title_activity_input"
             android:theme="@style/Theme.AppCompat.Light.DarkActionBar" />
-
         <activity
             android:name=".activity.BasicActivity"
             android:theme="@style/Theme.AppCompat.Light.DarkActionBar" />
+        <activity android:name=".activity.AboutActivity"></activity>
     </application>
 
 </manifest>
