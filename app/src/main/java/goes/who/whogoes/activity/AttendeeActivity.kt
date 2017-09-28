@@ -62,15 +62,15 @@ class AttendeeActivity : BasicActivity() {
         setContentView(R.layout.activity_event)
         MyApplication.graph.inject(this)
 
-        responseList = findViewById<RecyclerView>(R.id.response)
+        responseList = findViewById(R.id.response) as RecyclerView
         responseAdapter = AttendeesResponseAdapter(this, emptyList())
         postsLayoutManager = LinearLayoutManager(this)
-        mProgressBar = findViewById<ProgressBar>(R.id.progress_bar)
+        mProgressBar = findViewById(R.id.progress_bar) as ProgressBar
 
 
         mCompositeDisposable = CompositeDisposable()
 
-        title = findViewById<TextView>(R.id.title)
+        title = findViewById(R.id.title) as TextView
 
         responseList.apply {
             setHasFixedSize(true)

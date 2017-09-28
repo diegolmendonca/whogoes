@@ -33,8 +33,8 @@ class EventFinderResponseActivity : BasicActivity() {
 
         facebookToken = intent.getStringExtra("FACEBOOK_TOKEN")
 
-        responseList = findViewById<RecyclerView>(R.id.response)
-        mProgressBar  = findViewById<ProgressBar>(R.id.progress_bar)
+        responseList = findViewById(R.id.response) as RecyclerView
+        mProgressBar  = findViewById(R.id.progress_bar) as ProgressBar
         postsLayoutManager = LinearLayoutManager(this)
 
         eventResponseAdapter = EventResponseAdapter(this, emptyList(), facebookToken)

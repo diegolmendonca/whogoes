@@ -49,9 +49,9 @@ class AttendeesResponseAdapter(val act: Activity, var responseList: List<Datum>)
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ResponseViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.response_item, parent, false)
         return ResponseViewHolder(view,
-                view.findViewById<TextView>(R.id.title),
-                view.findViewById<TextView>(R.id.body),
-                view.findViewById<ImageView>(R.id.profile))
+                view.findViewById(R.id.title) as TextView,
+                view.findViewById(R.id.body) as TextView,
+                view.findViewById(R.id.profile) as ImageView)
     }
 
     override fun getItemCount(): Int {
