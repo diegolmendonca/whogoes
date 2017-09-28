@@ -10,8 +10,8 @@ android {
         applicationId "goes.who.whogoes"
         minSdkVersion 19
         targetSdkVersion 26
-        versionCode 8
-        versionName "1.0.4"
+        versionCode 9
+        versionName "1.0.5"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
     }
