@@ -10,7 +10,7 @@ import mehdi.sakout.aboutpage.Element
 
 class AboutActivity : BasicActivity() {
 
-    val VERSION = "1.0.1"
+    val VERSION = "1.0.2"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
