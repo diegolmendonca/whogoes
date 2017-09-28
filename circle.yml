@@ -1,0 +1,27 @@
+#
+# Build configuration for Circle CI
+#
+
+machine:
+    environment:
+
+dependencies:
+    override:
+        - chmod +x gradlew
+        - ./gradlew dependencies
+
+test:
+  override:
+    # start the emulator
+    - emulator -avd circleci-android24 -no-audio -no-window:
+        background: true
+        parallel: true
+    # wait for it to have booted
+    - circle-android wait-for-boot
+    # run tests against the emulator. [connectedAndroidTest / test]
+    - (./gradlew):
+            timeout: 360
+    # copy the build outputs to artifacts
+    # - cp -r whogoes/build/outputs $CIRCLE_ARTIFACTS
+    # copy the test results to the test results directory.
+    # - cp -r whogoes/build/outputs/androidTest-results/* $CIRCLE_TEST_REPORTS
