@@ -18,7 +18,6 @@ open class BasicActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         if (!isNetworkAvailable()) {
-
             val builder = AlertDialog.Builder(this)
             builder.setMessage(getString(R.string.internet))
                     .setCancelable(false)
@@ -28,11 +27,8 @@ open class BasicActivity : AppCompatActivity() {
             val alert = builder.create()
             alert.show()
         } else {
-
             getSupportActionBar()?.setDisplayHomeAsUpEnabled(true)
             getSupportActionBar()?.setHomeButtonEnabled(true)
-
-
         }
     }
 
@@ -42,7 +38,6 @@ open class BasicActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-
         when (item?.itemId) {
             android.R.id.home -> onBackPressed()
             R.id.exit -> logout()
