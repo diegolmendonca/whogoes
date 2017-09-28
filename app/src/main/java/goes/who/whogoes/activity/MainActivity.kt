@@ -22,7 +22,7 @@ class MainActivity : BasicActivity() {
         setContentView(R.layout.activity_main)
         MyApplication.graph.inject(this)
 
-        button = findViewById(R.id.login_button) as Button
+        button = findViewById(R.id.login_button)
 
         callbackManager = CallbackManager.Factory.create()
 

@@ -17,9 +17,9 @@ class InputActivity : BasicActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_input)
 
-        eventName = findViewById(R.id.eventName) as TextView
-        name = findViewById(R.id.name) as EditText
-        fire = findViewById(R.id.fire) as Button
+        eventName = findViewById<TextView>(R.id.eventName)
+        name = findViewById<EditText>(R.id.name)
+        fire = findViewById<Button>(R.id.fire)
 
         val chosenEventName = intent.getStringExtra("datumEventName")
         eventName.text = chosenEventName

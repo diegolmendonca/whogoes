@@ -15,8 +15,8 @@ class EventFinderActivity : BasicActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_event_finder)
 
-        eventName = findViewById(R.id.eventName) as EditText
-        fire = findViewById(R.id.fire) as Button
+        eventName = findViewById<EditText>(R.id.eventName)
+        fire = findViewById<Button>(R.id.fire)
 
     }
 

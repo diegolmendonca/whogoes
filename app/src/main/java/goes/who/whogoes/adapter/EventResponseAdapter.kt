@@ -46,12 +46,12 @@ class EventResponseAdapter(val act: Activity, var responseList: List<DatumEvent>
                 faceToken,
                 act,
                 view,
-                view.findViewById(R.id.name) as TextView,
-                view.findViewById(R.id.date) as TextView,
-                view.findViewById(R.id.attending) as TextView,
-                view.findViewById(R.id.interested) as TextView,
-                view.findViewById(R.id.declined) as TextView,
-                view.findViewById(R.id.cover) as ImageView)
+                view.findViewById<TextView>(R.id.name),
+                view.findViewById<TextView>(R.id.date),
+                view.findViewById<TextView>(R.id.attending),
+                view.findViewById<TextView>(R.id.interested),
+                view.findViewById<TextView>(R.id.declined),
+                view.findViewById<ImageView>(R.id.cover))
     }
 
     override fun getItemCount(): Int {
