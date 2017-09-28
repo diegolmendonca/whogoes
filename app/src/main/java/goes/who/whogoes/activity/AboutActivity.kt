@@ -15,15 +15,12 @@ class AboutActivity : BasicActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         simulateDayNight(/* DAY */0)
-        val adsElement = Element()
-        adsElement.setTitle("Advertise with us")
 
         val aboutPage = AboutPage(this)
                 .setDescription(description())
                 .isRTL(false)
                 .setImage(R.drawable.ic_launcher)
                 .addItem(Element().setTitle(getString(R.string.version,VERSION)))
-                .addItem(adsElement)
                 .addGroup(getString(R.string.connect))
                 .addEmail("whogoesapp@gmail.com")
                 .addWebsite("http://github.com/diegolmendonca/whogoes")

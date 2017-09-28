@@ -32,7 +32,7 @@
     <string name="yes"> yes</string>
     <string name="no"> no</string>
     <string name="ok"> ok</string>
-    <string name="connect"> Connect with us</string>
+    <string name="connect"> Reach us</string>
     <string name="version"> Version: %1$s</string>
 
     <string name="internet"> You dont have internet connection. Please come back when you are online</string>
