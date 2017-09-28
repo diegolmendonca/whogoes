@@ -1,6 +1,9 @@
 #
 # Build configuration for Circle CI
 #
+checkout:
+   post:
+        - cp -r licenses/. $ANDROID_HOME/licenses
 
 machine:
     environment:
