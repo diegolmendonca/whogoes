@@ -35,7 +35,7 @@ Technologies/Frameworks I wanted to learn and exercise:
 If you check source code, you may see that it is not completely uniform. This was on purpose, exactly to test all the technologies listed above.
 For instance, inside [AttendeeActivity], I am consuming the facebook API by subscribing to the response, using RXJAVA + RETROFIT.
 On the other hand, [EventFinderResponseActivity] used OKHTTP + coroutines to consume another facebook API.
-I dont have plans to follow only one approach in the future. I hope this source code may help other developers who want to find working examples for both approached, as it took some time for me to make them work.
+I dont have plans to follow only one approach in the future. I hope this source code may help other developers who want to find working examples for both approaches, as it took some time for me to make them work.
 
 ``
 # Development

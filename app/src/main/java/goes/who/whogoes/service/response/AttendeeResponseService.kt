@@ -15,9 +15,9 @@ class AttendeeResponseService {
         val filtered = rawResponse.data.filter { x -> x.name.contains(name) }
 
         val result = when (status) {
-            "attending/" -> Interested()
+            "attending/" -> Attending()
             "declined/" -> Declined()
-            else -> Attending()
+            else -> Interested()
         }
 
         return filtered.map { x -> x.copy(status = result) }

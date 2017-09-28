@@ -5,7 +5,7 @@
 
     <string name="title_activity_event">Find Event</string>
     <string name="title_activity_event_response">Event Response</string>
-    <string name="title_activity_attendee">Attendee</string>
+    <string name="title_activity_attendee">Results</string>
     <string name="title_activity_main">Login</string>
     <string name="title_activity_input">Find User</string>
     <string name="partial_result">PARTIAL RESULT: %1$d people found....</string>
