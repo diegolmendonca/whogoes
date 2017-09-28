@@ -2,7 +2,6 @@ package goes.who.whogoes.adapter
 
 import android.app.Activity
 import android.content.Intent
-import android.content.res.Resources
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -14,7 +13,6 @@ import goes.who.whogoes.R
 import goes.who.whogoes.activity.InputActivity
 import goes.who.whogoes.model.DatumEvent
 import java.text.SimpleDateFormat
-import java.time.LocalDate
 
 class EventResponseAdapter(val act: Activity, var responseList: List<DatumEvent>, val faceToken:String) : RecyclerView.Adapter<EventResponseViewHolder>() {
 

@@ -1,0 +1,40 @@
+<resources>
+    <string name="app_name">Who Goes</string>
+    <string name="facebook_app_id">270779473413557</string>
+    <string name="fb_login_protocol_scheme">fb270779473413557</string>
+
+    <string name="title_activity_event">Encontre Evento</string>
+    <string name="title_activity_event_response">Resposta do Evento</string>
+    <string name="title_activity_attendee">Confirmado</string>
+    <string name="title_activity_main">Login</string>
+    <string name="title_activity_input">Encontre Usuário</string>
+    <string name="partial_result">RESULTADO PARCIAL: %1$d pessoa(s) encontrada(s)....</string>
+    <string name="final_result">RESULTADO FINAL: %1$d pessoa(s) encontrada(s)</string>
+    <string name="search_finished">PESQUISA FINALIZADA</string>
+    <string name="facebook_event_name_error">Por favor, insira o nome do evento do Facebook</string>
+    <string name="facebook_event_no_found">Nenhum evento encontrado com o nome:%1$s</string>
+    <string name="internet_issues">Temnpo de Serviço expirado. Por favor, cheque sua conexão de internet e tente novamente</string>
+    <string name="user_name_error"> Por favor, insira o nome da pessoa a ser buscada</string>
+    <string name="interested"> interessado</string>
+    <string name="declined"> declinado</string>
+    <string name="attending"> confirmado</string>
+    <string name="search"> Pesquisar</string>
+    <string name="name"> Nome</string>
+    <string name="event_by_name"> Ache evento por nome</string>
+    <string name="person_name"> Por favor, digite um nome</string>
+    <string name="profile_picture"> foto de perfil</string>
+    <string name="step_1_of_3"> Passo 1 de 3 : Procure evento por nome</string>
+    <string name="step_2_of_3"> Passo 2 de 3 : Selecione Evento</string>
+    <string name="step_3_of_3"> Passo 3 de 3 : Digite o Nome da Pessoa</string>
+    <string name="logout"> Logout</string>
+    <string name="about"> Sobre</string>
+    <string name="exit"> Tem certeza que deseja sair?</string>
+    <string name="yes"> sim</string>
+    <string name="no"> não</string>
+    <string name="ok"> ok</string>
+    <string name="connect"> Encontre-nos</string>
+    <string name="version"> Versão: %1$s</string>
+
+    <string name="internet"> Você não tem conexão à internet.Volte quando estiver online.</string>
+    <string name="description"> Encontre pessoas em potencial que ou estão interessadas, ou confirmaram ou declinaram um evento do Facebbok, em 3 simples passos: \n 1 - Encontre um evento digitando seu nome \n 2 - Selecione o Evento \n 3 - Insira o nome da pessoa a ser pesquisada. \n  Esse projeto é open source. Sinta-se à vontade para contribuir. Cheque nosso github abaixo para mais detalhes técnicos e informações a respeito deste projeto.</string>
+</resources>

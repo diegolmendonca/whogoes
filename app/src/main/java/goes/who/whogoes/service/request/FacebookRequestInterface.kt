@@ -1,6 +1,5 @@
 package goes.who.whogoes.service.request
 
-import goes.who.whogoes.model.Datum
 import goes.who.whogoes.model.Example
 import io.reactivex.Observable
 import retrofit2.http.GET

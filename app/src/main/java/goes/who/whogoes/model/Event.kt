@@ -1,9 +1,5 @@
 package goes.who.whogoes.model
 
-import goes.who.whogoes.model.Datum
-import goes.who.whogoes.model.DatumEvent
-import goes.who.whogoes.model.Example
-
 /**
  * Created by Diego Mendonca on 08.09.2017.
  */
