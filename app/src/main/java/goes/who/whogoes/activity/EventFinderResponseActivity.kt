@@ -63,10 +63,10 @@ class EventFinderResponseActivity : BasicActivity() {
                 val result = eventRequestService.performCall(request).await()
                 eventResponseAdapter.setElements(result)
                 eventResponseAdapter.notifyDataSetChanged()
-                responseList.setVisibility(View.VISIBLE)
-                mProgressBar.setVisibility(View.GONE)
+                responseList.visibility = View.VISIBLE
+                mProgressBar.visibility = View.GONE
 
-                if (result.size == 0)
+                if (result.isEmpty())
                     Toast.makeText(this@EventFinderResponseActivity, getString(R.string.facebook_event_no_found, eventName), Toast.LENGTH_SHORT).show()
 
             } catch (exception: IOException) {

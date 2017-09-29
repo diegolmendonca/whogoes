@@ -36,7 +36,7 @@ class AttendeeActivity : BasicActivity() {
     @Inject
     lateinit var facebookRequestInterface: FacebookRequestInterface
 
-    val  userEventStatus  = listOf(Attending(), Interested(), Declined())
+    private val userEventStatus  = listOf(Attending(), Interested(), Declined())
 
     private lateinit var responseList: RecyclerView
     private lateinit var mProgressBar: ProgressBar

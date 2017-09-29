@@ -27,13 +27,13 @@ open class BasicActivity : AppCompatActivity() {
             val alert = builder.create()
             alert.show()
         } else {
-            getSupportActionBar()?.setDisplayHomeAsUpEnabled(true)
-            getSupportActionBar()?.setHomeButtonEnabled(true)
+            supportActionBar?.setDisplayHomeAsUpEnabled(true)
+            supportActionBar?.setHomeButtonEnabled(true)
         }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        getMenuInflater().inflate(R.menu.menu_main, menu)
+        menuInflater.inflate(R.menu.menu_main, menu)
         return true
     }
 
