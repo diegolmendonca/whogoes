@@ -5,7 +5,7 @@
 
     <string name="title_activity_event">Encontre Evento</string>
     <string name="title_activity_event_response">Resposta do Evento</string>
-    <string name="title_activity_attendee">Confirmado</string>
+    <string name="title_activity_attendee">Resultados</string>
     <string name="title_activity_main">Login</string>
     <string name="title_activity_input">Encontre Usuário</string>
     <string name="partial_result">RESULTADO PARCIAL: %1$d pessoa(s) encontrada(s)....</string>
