@@ -26,7 +26,7 @@ import javax.inject.Inject
 import javax.inject.Named
 
 
-/** TODO: Remove srevice from this activity. However, service needes
+/** TODO: Remove service from this activity. However, service needs
 * to return results to activity, in order to update progress bar and list adapter.
 * Consider using broadcast or something similar
  */
