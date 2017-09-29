@@ -33,7 +33,9 @@ class EventResponseAdapter(val act: Activity, var responseList: List<DatumEvent>
         holder.declined.text = act.getString(R.string.declined).toUpperCase() + ":" + item.declined_count.toString()
         holder.date.text = outgoingFormat.format(date)
         holder.name.text = item.name
-        Picasso.with(act.applicationContext).load(item.cover.source).into(holder.image)
+
+
+        Picasso.with(act.applicationContext).load(item.cover?.source).into(holder.image)
 
         holder.bind(item)
 

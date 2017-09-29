@@ -12,7 +12,7 @@ class AttendeeResponseService {
 
     fun processResponse(status: String, name: String, rawResponse: Example): List<Datum> {
 
-        val filtered = rawResponse.data.filter { x -> x.name.contains(name) }
+        val filtered = rawResponse.data.filter { x -> x.name.toUpperCase().contains(name.trim().toUpperCase()) }
 
         val result = when (status) {
             "attending/" -> Interested()
