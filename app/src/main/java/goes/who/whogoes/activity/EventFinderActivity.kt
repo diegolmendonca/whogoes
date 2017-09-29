@@ -41,9 +41,9 @@ class EventFinderActivity : BasicActivity() {
         }
     }
 
-    fun isValidInput(eventId: EditText): Boolean{
+    private fun isValidInput(eventId: EditText): Boolean{
         if(eventId.text.isNullOrEmpty()){
-            eventId.setError(getString(R.string.facebook_event_name_error))
+            eventId.error = getString(R.string.facebook_event_name_error)
             return false
         }
         return true

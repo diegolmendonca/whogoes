@@ -18,7 +18,6 @@ class MainActivity : BasicActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        FacebookSdk.sdkInitialize(applicationContext)
         setContentView(R.layout.activity_main)
         MyApplication.graph.inject(this)
 

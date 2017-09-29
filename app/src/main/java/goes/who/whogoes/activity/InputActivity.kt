@@ -9,9 +9,9 @@ import goes.who.whogoes.R
 
 class InputActivity : BasicActivity() {
 
-    lateinit var eventName: TextView
-    lateinit var name: EditText
-    lateinit var fire: Button
+    lateinit private var eventName: TextView
+    lateinit private var name: EditText
+    lateinit private var fire: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,9 +43,9 @@ class InputActivity : BasicActivity() {
         }
     }
 
-    fun isValidInput(name: EditText): Boolean{
+    private fun isValidInput(name: EditText): Boolean{
          if(name.text.isNullOrEmpty()){
-            name.setError(getString(R.string.user_name_error))
+            name.error = getString(R.string.user_name_error)
             return false
         }
         return true

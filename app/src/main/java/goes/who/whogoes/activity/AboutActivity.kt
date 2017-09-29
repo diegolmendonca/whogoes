@@ -3,6 +3,7 @@ package goes.who.whogoes.activity
 import android.content.res.Configuration
 import android.os.Bundle
 import android.support.v7.app.AppCompatDelegate
+import goes.who.whogoes.BuildConfig
 import goes.who.whogoes.R
 import mehdi.sakout.aboutpage.AboutPage
 import mehdi.sakout.aboutpage.Element
@@ -10,7 +11,7 @@ import mehdi.sakout.aboutpage.Element
 
 class AboutActivity : BasicActivity() {
 
-    val VERSION = "1.0.6"
+    val VERSION =  BuildConfig.VERSION_NAME
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,12 +32,12 @@ class AboutActivity : BasicActivity() {
         setContentView(aboutPage)
     }
 
-    fun description(): String {
+    private fun description(): String {
         return getString(R.string.description)
     }
 
 
-    fun simulateDayNight(currentSetting: Int) {
+    private fun simulateDayNight(currentSetting: Int) {
         val DAY = 0
         val NIGHT = 1
         val FOLLOW_SYSTEM = 3

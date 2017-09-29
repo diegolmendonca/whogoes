@@ -5,13 +5,13 @@ apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 26
-    buildToolsVersion "26.0.1"
+    buildToolsVersion "26.0.2"
     defaultConfig {
         applicationId "goes.who.whogoes"
         minSdkVersion 19
         targetSdkVersion 26
-        versionCode 10
-        versionName "1.0.6"
+        versionCode 13
+        versionName "1.0.10"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
     }
