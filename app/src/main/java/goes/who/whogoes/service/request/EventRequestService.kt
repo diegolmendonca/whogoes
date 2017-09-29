@@ -1,8 +1,9 @@
 package goes.who.whogoes.service.request
 
+import android.util.Log
 import goes.who.whogoes.di.MyApplication
 import goes.who.whogoes.model.DatumEvent
-import goes.who.whogoes.model.RequestModel
+import goes.who.whogoes.model.EventRequest
 import goes.who.whogoes.service.response.EventResponseService
 import kotlinx.coroutines.experimental.CommonPool
 import kotlinx.coroutines.experimental.Deferred
@@ -40,13 +41,18 @@ class EventRequestService : HttpService<Deferred<List<DatumEvent>>> {
         MyApplication.graph.inject(this)
     }
 
-   override fun performCall(request : RequestModel): Deferred<List<DatumEvent>> {
+   override fun performCall(eventRequest: EventRequest): Deferred<List<DatumEvent>> {
+
+       Log.d("EVENT" , baseURI + query +
+               eventRequest.eventID +
+               remainingEventURI +
+               eventRequest.token)
 
         return  async(CommonPool) {
             call(baseURI + query +
-                    request.eventID +
+                    eventRequest.eventID +
                     remainingEventURI +
-                    request.token)
+                    eventRequest.token)
         }
 
     }

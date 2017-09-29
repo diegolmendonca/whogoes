@@ -15,7 +15,7 @@ class RequestStringModule {
     val limit = 5000
     val field = "fields"
     val attendeeField = "=name,picture"
-    val eventField = "=name%2Ccover%2Cattending_count%2Cinterested_count%2Cdeclined_count%2Cstart_time"
+    val eventField = "=name%2Cplace%2Ccover%2Cattending_count%2Cinterested_count%2Cdeclined_count%2Cstart_time"
 
 
     @Provides

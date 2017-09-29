@@ -3,7 +3,7 @@ package goes.who.whogoes.service.response
 import com.google.gson.Gson
 import goes.who.whogoes.di.MyApplication
 import goes.who.whogoes.model.ExampleEvent
-import goes.who.whogoes.model.ResponseModel2
+import goes.who.whogoes.model.EventResponse
 import okhttp3.Response
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -26,10 +26,10 @@ class EventResponseService: ResponseService<ExampleEvent> {
 
     }
 
-    fun processResponse(response: Response): ResponseModel2 {
+    fun processResponse(response: Response): EventResponse {
         val topic = transform(response)
         response.body()?.close()
-        return ResponseModel2(topic.data)
+        return EventResponse(topic.data)
     }
 
 

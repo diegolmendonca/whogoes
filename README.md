@@ -43,7 +43,7 @@ I dont have plans to follow only one approach in the future. I hope this source 
 
 Want to contribute? Great!
 
-Send us suggestions or simply open your pull request
+Send us suggestions or simply open your pull eventRequest
 
 # Todos
 

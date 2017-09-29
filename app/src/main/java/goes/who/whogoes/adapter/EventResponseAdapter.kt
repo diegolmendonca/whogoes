@@ -26,14 +26,14 @@ class EventResponseAdapter(val act: Activity, var responseList: List<DatumEvent>
         val incomingFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")
         val date = incomingFormat.parse(item.start_time)
         val outgoingFormat = SimpleDateFormat(" EEEE, dd MMMM yyyy")
-
+        val location = item.place?.name.orEmpty() + "-" + item.place?.location?.street.orEmpty() +  "-" + item.place?.location?.city.orEmpty() +  "-" + item.place?.location?.country.orEmpty()
 
         holder.attending.text = act.getString(R.string.attending).toUpperCase() + ":" + item.attending_count.toString()
         holder.interested.text = act.getString(R.string.interested).toUpperCase() + ":" + item.interested_count.toString()
         holder.declined.text = act.getString(R.string.declined).toUpperCase() + ":" + item.declined_count.toString()
+        holder.location.text = location
         holder.date.text = outgoingFormat.format(date)
         holder.name.text = item.name
-
 
         Picasso.with(act.applicationContext).load(item.cover?.source).into(holder.image)
 
@@ -50,6 +50,7 @@ class EventResponseAdapter(val act: Activity, var responseList: List<DatumEvent>
                 view,
                 view.findViewById<TextView>(R.id.name),
                 view.findViewById<TextView>(R.id.date),
+                view.findViewById<TextView>(R.id.location),
                 view.findViewById<TextView>(R.id.attending),
                 view.findViewById<TextView>(R.id.interested),
                 view.findViewById<TextView>(R.id.declined),
@@ -68,6 +69,7 @@ data class EventResponseViewHolder(
         val view: View,
         val name: TextView,
         val date: TextView,
+        val location: TextView,
         val attending: TextView,
         val interested: TextView,
         val declined: TextView,

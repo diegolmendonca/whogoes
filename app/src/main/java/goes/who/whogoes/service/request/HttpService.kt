@@ -1,6 +1,6 @@
 package goes.who.whogoes.service.request
 
-import goes.who.whogoes.model.RequestModel
+import goes.who.whogoes.model.EventRequest
 
 
 /**
@@ -8,5 +8,5 @@ import goes.who.whogoes.model.RequestModel
  */
 
 interface HttpService<T> {
-    fun performCall(request : RequestModel): T
+    fun performCall(eventRequest: EventRequest): T
 }

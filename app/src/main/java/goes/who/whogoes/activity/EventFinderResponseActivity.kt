@@ -9,7 +9,7 @@ import android.widget.Toast
 import goes.who.whogoes.R
 import goes.who.whogoes.adapter.EventResponseAdapter
 import goes.who.whogoes.di.MyApplication
-import goes.who.whogoes.model.RequestModel
+import goes.who.whogoes.model.EventRequest
 import goes.who.whogoes.service.request.EventRequestService
 import kotlinx.coroutines.experimental.android.UI
 import kotlinx.coroutines.experimental.launch
@@ -52,7 +52,7 @@ class EventFinderResponseActivity : BasicActivity() {
 
         val eventName = intent.getStringExtra("eventName")
 
-        val request = RequestModel(
+        val request = EventRequest(
                 eventName,
                 "",
                 facebookToken
