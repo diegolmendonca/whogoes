@@ -34,6 +34,6 @@ test:
             timeout: 600
 
     # copy the build outputs to artifacts
-    - cp -r whogoes/app/build/reports/androidTests $CIRCLE_ARTIFACTS
+    # - cp -r whogoes/app/build/reports/androidTests $CIRCLE_ARTIFACTS
     # copy the test results to the test results directory.
-    - cp -r whogoes/app/build/reports/androidTests/* $CIRCLE_TEST_REPORTS
+    # - cp -r whogoes/app/build/reports/androidTests/* $CIRCLE_TEST_REPORTS
