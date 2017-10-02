@@ -4,8 +4,11 @@ import android.support.test.InstrumentationRegistry
 import android.support.test.espresso.Espresso
 import android.support.test.espresso.assertion.ViewAssertions
 import android.support.test.espresso.matcher.ViewMatchers
+import android.support.test.rule.ActivityTestRule
 import android.support.test.runner.AndroidJUnit4
+import goes.who.whogoes.activity.MainActivity
 import org.junit.Assert.assertEquals
+import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 
@@ -16,6 +19,8 @@ import org.junit.runner.RunWith
  */
 @RunWith(AndroidJUnit4::class)
 class InstrumentedTest {
+    @get:Rule
+    val mActivityRule: ActivityTestRule<MainActivity> = ActivityTestRule(MainActivity::class.java)
 
     @Test
     fun useAppContext() {
@@ -27,6 +32,6 @@ class InstrumentedTest {
     @Test
     fun loginWithFacebookIsDisplayedOnView() {
         Espresso.onView(ViewMatchers.withId(R.id.login_button))
-                .check(ViewAssertions.matches(ViewMatchers.hasDescendant(ViewMatchers.withText("Login with Facebook"))));
+                .check(ViewAssertions.matches(ViewMatchers.isCompletelyDisplayed()));
     }
 }
