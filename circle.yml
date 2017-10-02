@@ -32,7 +32,7 @@ test:
             timeout: 600
 
     # run tests against the emulator
-    - (./gradlew connectedAndroidTest -PdisablePreDex):
+    - (./gradlew connectedAndroidTest -PdisablePreDex --debug):
             timeout: 600
 
     # copy the build outputs to artifacts
