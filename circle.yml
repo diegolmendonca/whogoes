@@ -16,7 +16,7 @@ dependencies:
 test:
   override:
     # start the emulator
-    - emulator -avd circleci-android24 -no-audio:
+    - emulator -avd circleci-android24 -no-audio -no-window:
         background: true
         parallel: true
     # wait for it to have booted
@@ -30,7 +30,7 @@ test:
             timeout: 600
 
     # run tests against the emulator
-    - (./gradlew connectedAndroidTest):
+    - (./gradlew connectedAndroidTest -PdisablePreDex):
             timeout: 600
 
     # copy the build outputs to artifacts
