@@ -31,9 +31,7 @@ class InstrumentedTest {
 
     @Test
     fun loginWithFacebookIsDisplayedOnView() {
-        /*
         Espresso.onView(ViewMatchers.withId(R.id.login_button))
                 .check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
-                */
     }
 }
