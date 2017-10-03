@@ -7,7 +7,6 @@ checkout:
 
 machine:
     environment:
-    TERM: "dumb"
 
 dependencies:
     override:
