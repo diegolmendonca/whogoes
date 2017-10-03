@@ -1,9 +1,6 @@
 package goes.who.whogoes
 
 import android.support.test.InstrumentationRegistry
-import android.support.test.espresso.Espresso
-import android.support.test.espresso.assertion.ViewAssertions
-import android.support.test.espresso.matcher.ViewMatchers
 import android.support.test.rule.ActivityTestRule
 import android.support.test.runner.AndroidJUnit4
 import goes.who.whogoes.activity.MainActivity
@@ -29,9 +26,11 @@ class InstrumentedTest {
         assertEquals("goes.who.whogoes", appContext.packageName)
     }
 
+    /*
     @Test
     fun mainActivityIsDisplayedOnView() {
         Espresso.onView(ViewMatchers.withId(R.id.main_activity_rel_layout))
                 .check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
     }
+    */
 }
