@@ -19,11 +19,15 @@ dependencies:
 test:
   override:
     # start the emulator
-    - emulator -avd circleci-android24 -no-audio -no-boot-anim:
+    - emulator -avd circleci-android24 -no-audio -no-boot-anim -no-window:
         background: true
         parallel: true
     # wait for it to have booted
     - circle-android wait-for-boot
+    
+    # unlock the emulator screen
+    - sleep 30
+    - adb shell input keyevent 82
 
     # build project
     - (./gradlew):
