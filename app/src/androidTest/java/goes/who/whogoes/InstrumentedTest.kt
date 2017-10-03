@@ -30,8 +30,8 @@ class InstrumentedTest {
     }
 
     @Test
-    fun loginWithFacebookIsDisplayedOnView() {
-        Espresso.onView(ViewMatchers.withId(R.id.login_button))
+    fun mainActivityIsDisplayedOnView() {
+        Espresso.onView(ViewMatchers.withId(R.id.main_activity_rel_layout))
                 .check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
     }
 }
