@@ -9,7 +9,7 @@ machine:
     environment:
     TERM: "dumb"
     ADB_INSTALL_TIMEOUT: "10"
-    GRADLE_OPTS: '-Dorg.gradle.jvmargs="-Xmx2048m -XX:+HeapDumpOnOutOfMemoryError"'
+    GRADLE_OPTS: '-Dorg.gradle.jvmargs="-Xmx3072m -XX:+HeapDumpOnOutOfMemoryError"'
 
 dependencies:
     override:
@@ -30,11 +30,11 @@ test:
             timeout: 360
 
     # run unit tests
-    - (./gradlew test -PdisablePreDex):
+    - (./gradlew test):
             timeout: 600
 
     # run tests against the emulator
-    - (./gradlew connectedAndroidTest -PdisablePreDex):
+    - (./gradlew connectedAndroidTest):
             timeout: 600
 
     # copy the build outputs to artifacts
