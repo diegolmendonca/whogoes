@@ -7,9 +7,9 @@ checkout:
 
 machine:
     environment:
-        TERM: "dumb"
-        ADB_INSTALL_TIMEOUT: "10"
-        GRADLE_OPTS: '-Dorg.gradle.jvmargs="-Xmx2048m -XX:+HeapDumpOnOutOfMemoryError"'
+    TERM: "dumb"
+    ADB_INSTALL_TIMEOUT: "10"
+    GRADLE_OPTS: '-Dorg.gradle.jvmargs="-Xmx2048m -XX:+HeapDumpOnOutOfMemoryError"'
 
 dependencies:
     override:
@@ -19,14 +19,16 @@ dependencies:
 test:
   override:
     # start the emulator
-    - emulator -avd circleci-android24 -no-audio:
+    - emulator -avd circleci-android24 -no-audio -no-boot-anim:
         background: true
         parallel: true
     # wait for it to have booted
     - circle-android wait-for-boot
-    # unlock the emulator screen
-    - sleep 30
-    - adb shell input keyevent 82
+
+    # build project
+    - (./gradlew):
+            timeout: 360
+
     # run unit tests
     - (./gradlew test -PdisablePreDex):
             timeout: 600
@@ -36,6 +38,6 @@ test:
             timeout: 600
 
     # copy the build outputs to artifacts
-    # - cp -r whogoes/app/build/reports/androidTests $CIRCLE_ARTIFACTS
+    - cp -r app/build/reports $CIRCLE_ARTIFACTS
     # copy the test results to the test results directory.
-    # - cp -r whogoes/app/build/reports/androidTests/* $CIRCLE_TEST_REPORTS
+    - cp -r app/build/reports/androidTests/* $CIRCLE_TEST_REPORTS

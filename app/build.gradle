@@ -38,7 +38,7 @@ dependencies {
     androidTestImplementation('com.android.support.test.espresso:espresso-core:3.0.1') {
         exclude module: 'support-annotations'
     }
-    compile 'com.facebook.android:facebook-android-sdk:4.26.0'
+    compile 'com.facebook.android:facebook-android-sdk:4.27.0'
 
     compile 'com.squareup.okhttp3:okhttp:3.8.1'
     compile 'com.squareup.okhttp3:logging-interceptor:3.8.1'
