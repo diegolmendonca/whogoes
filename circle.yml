@@ -21,17 +21,21 @@ test:
         parallel: true
     # wait for it to have booted
     - circle-android wait-for-boot
+     
+    # wait for sometime and unlock emulator screen
+    - sleep 60
+    # - adb shell input keyevent 82
 
     # build project
-    - (./gradlew):
+    - (./gradlew --configure-on-demand -PdisablePreDex):
             timeout: 360
 
     # run unit tests
-    - (./gradlew test):
+    - (./gradlew --configure-on-demand -PdisablePreDex test):
             timeout: 1200
 
     # run tests against the emulator
-    - (./gradlew connectedAndroidTest):
+    - (./gradlew --configure-on-demand -PdisablePreDex connectedAndroidTest):
             timeout: 1200
 
     # copy the build outputs to artifacts
