@@ -13,7 +13,7 @@ android {
         versionCode 13
         versionName "1.0.10"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        com.android.ddmlib.DdmPreferences.setTimeOut(60000)
+        com.android.ddmlib.DdmPreferences.setTimeOut(120000)
     }
     buildTypes {
         release {
