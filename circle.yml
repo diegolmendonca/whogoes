@@ -9,14 +9,6 @@ machine:
     environment:
 
 dependencies:
-    pre:
-        - mkdir -p $HOME/.android/ && touch $HOME/.android/repositories.cfg
-        - echo y | android update sdk --no-ui --all --filter "android-25"
-        - echo y | android update sdk --no-ui --all --filter "android-26"
-        - echo y | android update sdk --no-ui --all --filter "tools"
-        - echo y | android update sdk --no-ui --all --filter "platform-tools"
-        - echo y | android update sdk --no-ui --all --filter "extra-android-m2repository"
-        - echo y | $ANDROID_HOME/tools/bin/sdkmanager "extras;m2repository;com;android;support;constraint;constraint-layout-solver;1.0.2"
     override:
         - chmod +x gradlew
         - ./gradlew dependencies
