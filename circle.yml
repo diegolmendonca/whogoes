@@ -13,6 +13,7 @@ dependencies:
     override:
         - echo y | android update sdk --no-ui --all --filter tools,platform-tools,build-tools-25.0.3,android-25,extra-google-m2repository,extra-google-google_play_services,extra-android-support
         - chmod +x gradlew
+        - chmod +x $ANDROID_HOME/tools/bin/avdmanager
         - ./gradlew dependencies
         - echo no | $ANDROID_HOME/tools/bin/avdmanager create avd --force --name avdxsf --abi google_apis/x86_64 --package 'system-images;android-25;google_apis;x86_64'
 
