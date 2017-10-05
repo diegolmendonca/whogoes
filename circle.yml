@@ -18,7 +18,7 @@ dependencies:
 test:
   override:
     # start the emulator
-    - emulator -avd circleci-android24 -no-audio -no-window -no-boot-anim -memory 400 -gpu swiftshader:
+    - emulator -avd circleci-android24 -no-audio -no-window:
         background: true
         parallel: true
     # wait for it to have booted
