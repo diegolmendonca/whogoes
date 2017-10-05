@@ -12,12 +12,12 @@ machine:
 dependencies:
     override:
         - chmod +x gradlew
-        - ./gradlew dependencies
+        # - ./gradlew dependencies
 
 test:
   override:
     # start the emulator
-    - emulator -avd circleci-android24 -no-audio -no-window -gpu swiftshader:
+    - emulator -avd circleci-android23 -no-audio -no-window -gpu swiftshader:
         background: true
         parallel: true
     # wait for it to have booted

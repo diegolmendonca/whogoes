@@ -43,7 +43,7 @@ class InstrumentedTest {
         val appContext = InstrumentationRegistry.getTargetContext()
         assertEquals("goes.who.whogoes", appContext.packageName)
     }
-    
+
     @Test
     fun mainActivityIsDisplayedOnView() {
         Espresso.onView(ViewMatchers.withId(R.id.main_activity_rel_layout))
