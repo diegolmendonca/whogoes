@@ -11,7 +11,7 @@ machine:
 
 dependencies:
     override:
-        - echo y | android update sdk --no-ui --all --filter tools,platform-tools,build-tools-25.0.3,android-25,extra-google-m2repository,extra-google-google_play_services,extra-android-support
+        - echo y | android update sdk --no-ui --all --filter tools,platform-tools,build-tools-25.0.3,emulator,android-25,extra-google-m2repository,extra-google-google_play_services,extra-android-support
         - chmod +x gradlew
         - chmod +x $ANDROID_HOME/tools/bin/avdmanager
         - ./gradlew dependencies
