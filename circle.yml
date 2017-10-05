@@ -13,7 +13,7 @@ dependencies:
     override:
         - chmod +x gradlew
         # - ./gradlew dependencies
-        - echo no | Android/Sdk/tools/bin/avdmanager create avd --force --name x64avd --abi google_apis/x86_64 --package 'system-images;android-24;google_apis;x86_64'
+        - echo no | avdmanager create avd --force --name x64avd --abi google_apis/x86_64 --package 'system-images;android-24;google_apis;x86_64'
 
 test:
   override:
