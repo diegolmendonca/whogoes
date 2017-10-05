@@ -11,14 +11,14 @@ machine:
 
 dependencies:
     override:
-        - echo y | android update sdk --no-ui --all --filter tools,platform-tools,build-tools-25.0.3,android-25,extra-google-m2repository,extra-google-google_play_services,extra-android-support
+        - echo y | android update sdk --no-ui --all --filter tools,platform-tools,build-tools-26.0.2,android-26,extra-google-m2repository,extra-google-google_play_services,extra-android-support
         - chmod +x gradlew
         - ./gradlew dependencies
 
 test:
   override:
     # start the emulator
-    - emulator -avd circleci-android24 -no-audio -no-window:
+    - emulator -avd circleci-android23 -no-audio -no-window:
         background: true
         parallel: true
     # wait for it to have booted
