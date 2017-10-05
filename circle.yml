@@ -18,14 +18,14 @@ dependencies:
 test:
   override:
     # start the emulator
-    - emulator -avd circleci-android24 -no-audio -no-window -memory 512:
+    - emulator -avd circleci-android24 -no-audio -no-window -memory 400 -gpu off:
         background: true
         parallel: true
     # wait for it to have booted
     - circle-android wait-for-boot
      
     # wait for sometime and unlock emulator screen
-    # - sleep 60
+    - sleep 60
     - adb shell input keyevent 82
 
     # build project
