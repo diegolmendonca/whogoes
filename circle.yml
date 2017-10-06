@@ -18,7 +18,7 @@ dependencies:
 test:
   override:
     # start the emulator
-    - emulator -avd circleci-android24 -no-audio -no-window:
+    - emulator -avd circleci-android24 -no-audio -no-window -memory 343:
         background: true
         parallel: true
     # wait for it to have booted
