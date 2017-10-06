@@ -17,6 +17,10 @@ dependencies:
 
 test:
   override:
+  # run unit tests
+    - (./gradlew --configure-on-demand -PdisablePreDex test):
+            timeout: 1200
+            
     # start the emulator
     - emulator -avd circleci-android24 -no-audio -no-window -memory 343:
         background: true
@@ -28,19 +32,15 @@ test:
     - sleep 30
     - adb shell input keyevent 82
 
-    # run unit tests
-    - (./gradlew --configure-on-demand -PdisablePreDex test):
-            timeout: 1200
-
     # run tests against the emulator
     - (./gradlew --configure-on-demand -PdisablePreDex connectedAndroidTest):
             timeout: 1200
 
+  post:
+    - mkdir -p $CIRCLE_TEST_REPORTS/outputs/androidTest-results/connected
+    - find . -type f -regex ".*/build/outputs/androidTest-results/connected.*xml" -exec cp {} $CIRCLE_TEST_REPORTS/junit/ \;
     # copy the build outputs to artifacts
     - cp -r app/build/reports $CIRCLE_ARTIFACTS
     # copy the test results to the test results directory.
     - cp -r app/build/reports/androidTests/* $CIRCLE_TEST_REPORTS
 
-  post:
-    - mkdir -p $CIRCLE_TEST_REPORTS/outputs/androidTest-results/connected
-    - find . -type f -regex ".*/build/outputs/androidTest-results/connected.*xml" -exec cp {} $CIRCLE_TEST_REPORTS/junit/ \;
