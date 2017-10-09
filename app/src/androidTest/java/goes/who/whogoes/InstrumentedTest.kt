@@ -49,7 +49,6 @@ class InstrumentedTest {
     @Test
     fun mainActivityIsDisplayedOnView() {
         Espresso.onView(ViewMatchers.withId(R.id.main_activity_rel_layout))
-                .inRoot(RootMatchers.DEFAULT)
                 .check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
     }
 }
