@@ -21,17 +21,17 @@ test:
     - (./gradlew --configure-on-demand -PdisablePreDex test):
             timeout: 1200
             parallel: false
-            backbackground: true
+            background: false
 
     # start the emulator
-    - emulator -avd circleci-android24 -no-audio:
+    - emulator -avd circleci-android24 -no-audio -no-window:
         background: true
         parallel: true
     # wait for it to have booted
     - circle-android wait-for-boot
      
     # wait for sometime and unlock emulator screen
-    - sleep 30
+    - sleep 60
     - adb shell input keyevent 82
 
     # run tests against the emulator
