@@ -58,7 +58,7 @@ class EventRequestService : HttpService<Deferred<List<DatumEvent>>> {
     }
 
     private fun call(url: String?): List<DatumEvent> {
-        val request = Request.Builder().url(url).build()
+        val request = Request.Builder().url(url!!).build()
         val httpResponse = httpClient.newCall(request).execute()
         val formattedResponse = eventResponseService.processResponse(httpResponse)
         return formattedResponse.datum

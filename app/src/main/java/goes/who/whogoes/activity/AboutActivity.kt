@@ -8,10 +8,9 @@ import goes.who.whogoes.R
 import mehdi.sakout.aboutpage.AboutPage
 import mehdi.sakout.aboutpage.Element
 
-
 class AboutActivity : BasicActivity() {
 
-    val VERSION =  BuildConfig.VERSION_NAME
+    private val VERSION =  BuildConfig.VERSION_NAME
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
