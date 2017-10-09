@@ -24,7 +24,7 @@ test:
             background: false
 
     # start the emulator
-    - emulator -avd circleci-android24 -no-audio -memory 512:
+    - emulator -avd circleci-android24 -no-audio -no-window -memory 512:
         background: true
         parallel: true
     # wait for it to have booted
