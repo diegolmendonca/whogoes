@@ -7,7 +7,6 @@ checkout:
 
 machine:
     environment:
-        # QEMU_AUDIO_DRV: none
 
 dependencies:
     override:
@@ -22,7 +21,7 @@ test:
             timeout: 1200
 
     # start the emulator
-    - emulator -avd circleci-android24:
+    - emulator -avd circleci-android24 -no-audio -memory 1024:
         background: true
         parallel: true
     # wait for it to have booted
