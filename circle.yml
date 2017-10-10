@@ -18,8 +18,8 @@ dependencies:
 test:
   override:
   # run unit tests
-    - (./gradlew --configure-on-demand -PdisablePreDex test):
-            timeout: 1200
+  #  - (./gradlew --configure-on-demand -PdisablePreDex test):
+  #          timeout: 1200
 
     # start the emulator
     - emulator -avd circleci-android24:
@@ -29,8 +29,8 @@ test:
     - circle-android wait-for-boot
      
     # wait for sometime and unlock emulator screen
-    # - sleep 60
-    # - adb shell input keyevent 82
+    - sleep 30
+    - adb shell input keyevent 82
 
     # run tests against the emulator
     - (./gradlew --configure-on-demand -PdisablePreDex connectedAndroidTest):
