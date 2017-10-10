@@ -28,7 +28,7 @@ jobs:
           command: ./gradlew --configure-on-demand -PdisablePreDex test
       - run:
           name: Setup emulator
-          command: echo no | ./$ANDROID_HOME/tools/bin/avdmanager create avd -n testEmulator -k "system-images;android-26;default;armeabi-v7a"
+          command: echo no | .$ANDROID_HOME/tools/bin/avdmanager create avd -n testEmulator -k "system-images;android-26;default;armeabi-v7a"
           environment:
             TERM: dumb
       - run:
