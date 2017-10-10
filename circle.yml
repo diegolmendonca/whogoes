@@ -39,7 +39,7 @@ jobs:
             TERM: dumb
       - run:
           name: Launch emulator
-          command: export LD_LIBRARY_PATH=${ANDROID_HOME}/emulator/lib64:${ANDROID_HOME}/emulator/lib64/qt/lib && emulator -avd testEmulator
+          command: emulator -avd testEmulator -no-audio -no-window
           background: false
           no_output_timeout: 20m
       - run:
