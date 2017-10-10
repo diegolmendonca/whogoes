@@ -9,6 +9,7 @@ jobs:
       - image: circleci/android:api-26-alpha
     environment:
       JVM_OPTS: -Xmx3200m
+    resource_class: large
     steps:
       - checkout
       - restore_cache:
@@ -28,7 +29,7 @@ jobs:
           command: ./gradlew --configure-on-demand -PdisablePreDex test
       - run:
           name: Install custom system image
-          command: $ANDROID_HOME/tools/bin/sdkmanager "system-images;android-25;google_apis;armeabi-v7a"
+          command: $ANDROID_HOME/tools/bin/sdkmanager "system-images;android-25;default;armeabi-v7a"
           environment:
             TERM: dumb
       - run:
