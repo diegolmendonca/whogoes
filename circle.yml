@@ -7,7 +7,7 @@ checkout:
 
 machine:
     environment:
-        QEMU_AUDIO_DRV: none
+        # QEMU_AUDIO_DRV: none
 
 dependencies:
     override:
@@ -18,8 +18,8 @@ dependencies:
 test:
   override:
   # run unit tests
-  #  - (./gradlew --configure-on-demand -PdisablePreDex test):
-  #          timeout: 1200
+    - (./gradlew --configure-on-demand -PdisablePreDex test):
+            timeout: 1200
 
     # start the emulator
     - emulator -avd circleci-android24:
