@@ -22,7 +22,7 @@ test:
             timeout: 1200
 
     # start the emulator
-    - emulator -avd circleci-android24 -no-audio -no-window -verbose:
+    - emulator -avd circleci-android24 -no-window:
         background: true
         parallel: true
     # wait for it to have booted
