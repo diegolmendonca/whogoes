@@ -39,7 +39,7 @@ jobs:
       - run:
           name: Launch emulator
           command: export LD_LIBRARY_PATH=${ANDROID_HOME}/emulator/lib64:${ANDROID_HOME}/emulator/lib64/qt/lib && emulator -avd testEmulator -noaudio -no-boot-anim -no-window
-          background: true
+          background: false
       - run:
           name: Run Instrumented Tests
           command: ./gradlew --configure-on-demand -PdisablePreDex connectedAndroidTest
