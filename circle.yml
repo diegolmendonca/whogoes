@@ -32,17 +32,17 @@ jobs:
             TERM: dumb
       - run:
           name: Install Android SDK platforms API Level 26 
-          command: $ANDROID_HOME/tools/bin/sdkmanager "platforms;android-26"
+          command: yes | $ANDROID_HOME/tools/bin/sdkmanager "platforms;android-26"
           environment:
             TERM: dumb
       - run:
           name: Install Android SDK platform-tools 
-          command: $ANDROID_HOME/tools/bin/sdkmanager "platform-tools"
+          command: yes | $ANDROID_HOME/tools/bin/sdkmanager "platform-tools"
           environment:
             TERM: dumb
       - run:
           name: Install Android SDK build tools
-          command: $ANDROID_HOME/tools/bin/sdkmanager "build-tools;26.0.2"
+          command: yes | $ANDROID_HOME/tools/bin/sdkmanager "build-tools;26.0.2"
           environment:
             TERM: dumb
       - run:
