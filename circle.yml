@@ -19,6 +19,9 @@ jobs:
           name: Download Dependencies
           command: ./gradlew androidDependencies
       - run:
+          name: Copy licenses
+          command: cp -r licenses/. $ANDROID_HOME/licenses
+      - run:
           name: Run Unit Tests
           command: ./gradlew --configure-on-demand -PdisablePreDex test
       - run:
