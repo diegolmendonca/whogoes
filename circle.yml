@@ -16,23 +16,28 @@ jobs:
           name: Setup permission
           command: chmod +x gradlew
       - run:
-          name: Create licenses Directory
-          command: mkdir -p $ANDROID_HOME/licenses
+          name: Android SDK Platform 26
+          command: if [ ! -d "/usr/local/android-sdk-linux/platforms/android-26" ]; then echo y | android update sdk --no-ui --all --filter "android-26"; fi
           environment:
             TERM: dumb
       - run:
-          name: Accept licenses
-          command: echo 8933bad161af4178b1185d1a37fbf41ea5269c55 > $ANDROID_HOME/licenses/android-sdk-license
+          name: Android SDK Build-tools
+          command: if [ ! -d "/usr/local/android-sdk-linux/build-tools/26.0.2" ]; then echo y | android update sdk --no-ui --all --filter "build-tools-26.0.2"; fi
           environment:
             TERM: dumb
       - run:
-          name: Accept preview licenses
-          command: echo 84831b9409646a918e30573bab4c9c91346d8abd > $ANDROID_HOME/licenses/android-sdk-preview-license
+          name: Android Support Repository
+          command: if [ ! -d "/usr/local/android-sdk-linux/extras/android/m2repository/com/android/support/design/26.1.0" ]; then echo y | android update sdk --no-ui --all --filter "extra-android-m2repository"; fi
           environment:
             TERM: dumb
       - run:
           name: Install Android SDK platforms API Level 26 
           command: $ANDROID_HOME/tools/bin/sdkmanager "platforms;android-26"
+          environment:
+            TERM: dumb
+      - run:
+          name: Install Android SDK platform-tools 
+          command: $ANDROID_HOME/tools/bin/sdkmanager "platform-tools"
           environment:
             TERM: dumb
       - run:
