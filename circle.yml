@@ -31,6 +31,16 @@ jobs:
           environment:
             TERM: dumb
       - run:
+          name: Install Android SDK platforms API Level 26 
+          command: $ANDROID_HOME/tools/bin/sdkmanager "platforms;android-26"
+          environment:
+            TERM: dumb
+    - run:
+          name: Install Android SDK build tools
+          command: $ANDROID_HOME/tools/bin/sdkmanager "build-tools;26.0.2"
+          environment:
+            TERM: dumb
+      - run:
           name: Download Dependencies
           command: ./gradlew androidDependencies
           environment:
