@@ -62,17 +62,17 @@ jobs:
             TERM: dumb
       - run:
           name: Install custom system image
-          command: echo y | $ANDROID_HOME/tools/bin/sdkmanager "system-images;android-19;default;armeabi-v7a"
+          command: echo y | $ANDROID_HOME/tools/bin/sdkmanager "system-images;android-25;google_apis;armeabi-v7a"
           environment:
             TERM: dumb
       - run:
           name: Setup emulator
-          command: echo no | $ANDROID_HOME/tools/bin/avdmanager create avd -n testEmulator -k "system-images;android-19;default;armeabi-v7a"
+          command: echo no | $ANDROID_HOME/tools/bin/avdmanager create avd -n testEmulator -k "system-images;android-25;google_apis;armeabi-v7a"
           environment:
             TERM: dumb
       - run:
           name: Launch emulator
-          command: emulator -avd testEmulator -no-audio
+          command: emulator -avd testEmulator -no-audio -no-window -gpu swiftshader 
           background: false
           no_output_timeout: 20m
       - run:
