@@ -18,12 +18,18 @@ jobs:
       - run:
           name: Accept licenses
           command: yes | $ANDROID_HOME/tools/bin/sdkmanager --licenses
+          environment:
+            TERM: dumb
       - run:
           name: Download Dependencies
           command: ./gradlew androidDependencies
+          environment:
+            TERM: dumb
       - run:
           name: Run Unit Tests
           command: ./gradlew --configure-on-demand -PdisablePreDex test
+          environment:
+            TERM: dumb
       - run:
           name: Install custom system image
           command: $ANDROID_HOME/tools/bin/sdkmanager "system-images;android-23;google_apis;armeabi-v7a"
