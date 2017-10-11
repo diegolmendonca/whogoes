@@ -47,7 +47,7 @@ jobs:
             TERM: dumb
       - run:
           name: Accept Android Licenses
-          command: mkdir -p "$ANDROID_SDK/licenses" && echo -e "\n8933bad161af4178b1185d1a37fbf41ea5269c55" > "$ANDROID_SDK/licenses/android-sdk-license" && echo -e "\n84831b9409646a918e30573bab4c9c91346d8abd" > "$ANDROID_SDK/licenses/android-sdk-preview-license" 
+          command: mkdir -p "/opt/android/sdk/licenses" && echo -e "\n8933bad161af4178b1185d1a37fbf41ea5269c55" > "/opt/android/sdk/licenses/android-sdk-license" && echo -e "\n84831b9409646a918e30573bab4c9c91346d8abd" > "/opt/android/sdk/licenses/android-sdk-preview-license" 
           environment:
             TERM: dumb
       - run:
