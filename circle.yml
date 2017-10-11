@@ -47,7 +47,7 @@ jobs:
             TERM: dumb
       - run:
           name: Accept Android Licenses
-          command: yes | sdkmanager --licenses 
+          command: echo y | sdkmanager --licenses 
           environment:
             TERM: dumb
       - run:
