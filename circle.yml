@@ -1,48 +1,94 @@
 #
 # Build configuration for Circle CI
 #
-checkout:
-   post:
-        - cp -r licenses/. $ANDROID_HOME/licenses
-
-machine:
+version: 2
+jobs:
+  build:
+    working_directory: ~/code
+    docker:
+      - image: circleci/android:api-26-alpha
+    parallelism: 4
     environment:
-        QEMU_AUDIO_DRV: none
-
-dependencies:
-    override:
-        # - echo y | android update sdk --no-ui --all --filter tools,platform-tools,build-tools-26.0.2,android-26,extra-google-m2repository,extra-google-google_play_services,extra-android-support
-        - chmod +x gradlew
-        - ./gradlew dependencies
-
-test:
-  override:
-  # run unit tests
-    - (./gradlew --configure-on-demand -PdisablePreDex test):
-            timeout: 1200
-            parallel: false
-            background: false
-
-    # start the emulator
-    - emulator -avd circleci-android24 -no-audio -no-window:
-        background: true
-        parallel: true
-    # wait for it to have booted
-    - circle-android wait-for-boot
-     
-    # wait for sometime and unlock emulator screen
-    - sleep 60
-    - adb shell input keyevent 82
-
-    # run tests against the emulator
-    - (./gradlew --configure-on-demand -PdisablePreDex connectedAndroidTest):
-            timeout: 1200
-
-  post:
-    - mkdir -p $CIRCLE_TEST_REPORTS/outputs/androidTest-results/connected
-    - find . -type f -regex ".*/build/outputs/androidTest-results/connected.*xml" -exec cp {} $CIRCLE_TEST_REPORTS/junit/ \;
-    # copy the build outputs to artifacts
-    - cp -r app/build/reports $CIRCLE_ARTIFACTS
-    # copy the test results to the test results directory.
-    - cp -r app/build/reports/androidTests/* $CIRCLE_TEST_REPORTS
-
+      JVM_OPTS: -Xmx3200m
+    steps:
+      - checkout
+      - run:
+          name: Setup permission
+          command: chmod +x gradlew
+      - run:
+          name: Android SDK Platform 26
+          command: if [ ! -d "/usr/local/android-sdk-linux/platforms/android-26" ]; then echo y | android update sdk --no-ui --all --filter "android-26"; fi
+          environment:
+            TERM: dumb
+      - run:
+          name: Android SDK Build-tools
+          command: if [ ! -d "/usr/local/android-sdk-linux/build-tools/26.0.2" ]; then echo y | android update sdk --no-ui --all --filter "build-tools-26.0.2"; fi
+          environment:
+            TERM: dumb
+      - run:
+          name: Android Support Repository
+          command: if [ ! -d "/usr/local/android-sdk-linux/extras/android/m2repository/com/android/support/design/26.1.0" ]; then echo y | android update sdk --no-ui --all --filter "extra-android-m2repository"; fi
+          environment:
+            TERM: dumb
+      - run:
+          name: Install Android SDK platforms API Level 26 
+          command: echo y | $ANDROID_HOME/tools/bin/sdkmanager "platforms;android-26"
+          environment:
+            TERM: dumb
+      - run:
+          name: Install Android SDK platform-tools 
+          command: echo y | $ANDROID_HOME/tools/bin/sdkmanager "platform-tools"
+          environment:
+            TERM: dumb
+      - run:
+          name: Install Android SDK build tools
+          command: echo y | $ANDROID_HOME/tools/bin/sdkmanager "build-tools;26.0.2"
+          environment:
+            TERM: dumb
+      - run:
+          name: Accept Android Licenses
+          command: mkdir -p "/opt/android/sdk/licenses" && echo -e "\n8933bad161af4178b1185d1a37fbf41ea5269c55" > "/opt/android/sdk/licenses/android-sdk-license" && echo -e "\n84831b9409646a918e30573bab4c9c91346d8abd" > "/opt/android/sdk/licenses/android-sdk-preview-license" 
+          environment:
+            TERM: dumb
+      - run:
+          name: Download Dependencies
+          command: ./gradlew androidDependencies
+          environment:
+            TERM: dumb
+      - run:
+          name: Run Unit Tests
+          command: ./gradlew --configure-on-demand -PdisablePreDex test
+          environment:
+            TERM: dumb
+      - run:
+          name: Install custom system image
+          command: echo y | $ANDROID_HOME/tools/bin/sdkmanager "system-images;android-19;default;armeabi-v7a"
+          environment:
+            TERM: dumb
+      - run:
+          name: Setup emulator
+          command: echo no | $ANDROID_HOME/tools/bin/avdmanager create avd -n testEmulator -k "system-images;android-19;default;armeabi-v7a"
+          environment:
+            TERM: dumb
+      - run:
+          name: Launch emulator
+          command: export LD_LIBRARY_PATH=${ANDROID_HOME}/emulator/lib64:${ANDROID_HOME}/emulator/lib64/qt/lib && emulator64-arm -avd testEmulator -noaudio -no-boot-anim -no-window -accel on
+          background: true
+      - run:
+            name: Wait emulator
+            command: |
+              # wait for it to have booted
+              circle-android wait-for-boot
+              # unlock the emulator screen
+              sleep 30
+              adb shell input keyevent 82
+      - run:
+          name: Run Instrumented Tests
+          command: ./gradlew --configure-on-demand -PdisablePreDex connectedAndroidTest
+          environment:
+            TERM: dumb
+      - store_artifacts:
+          path: app/build/reports
+          destination: reports
+      - store_test_results:
+          path: app/build/test-results

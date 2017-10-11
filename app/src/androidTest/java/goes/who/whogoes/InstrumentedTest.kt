@@ -3,6 +3,8 @@ package goes.who.whogoes
 import android.support.test.InstrumentationRegistry
 import android.support.test.espresso.Espresso
 import android.support.test.espresso.assertion.ViewAssertions
+import android.support.test.espresso.matcher.RootMatchers
+import android.support.test.espresso.matcher.RootMatchers.isPlatformPopup
 import android.support.test.espresso.matcher.ViewMatchers
 import android.support.test.rule.ActivityTestRule
 import android.support.test.runner.AndroidJUnit4
