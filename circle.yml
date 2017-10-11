@@ -46,6 +46,11 @@ jobs:
           environment:
             TERM: dumb
       - run:
+          name: Accept Android Licenses
+          command: yes | sdkmanager --licenses 
+          environment:
+            TERM: dumb
+      - run:
           name: Download Dependencies
           command: ./gradlew androidDependencies
           environment:
