@@ -35,7 +35,7 @@ jobs:
           command: $ANDROID_HOME/tools/bin/sdkmanager "platforms;android-26"
           environment:
             TERM: dumb
-    - run:
+      - run:
           name: Install Android SDK build tools
           command: $ANDROID_HOME/tools/bin/sdkmanager "build-tools;26.0.2"
           environment:
