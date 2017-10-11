@@ -62,7 +62,7 @@ jobs:
             TERM: dumb
       - run:
           name: Install custom system image
-          command: $ANDROID_HOME/tools/bin/sdkmanager "system-images;android-23;google_apis;armeabi-v7a"
+          command: echo y | $ANDROID_HOME/tools/bin/sdkmanager "system-images;android-23;google_apis;armeabi-v7a"
           environment:
             TERM: dumb
       - run:
