@@ -16,11 +16,11 @@ jobs:
           name: Setup permission
           command: chmod +x gradlew
       - run:
-          name: Download Dependencies
-          command: ./gradlew androidDependencies
-      - run:
           name: Accept licenses
           command: yes | $ANDROID_HOME/tools/bin/sdkmanager --licenses
+      - run:
+          name: Download Dependencies
+          command: ./gradlew androidDependencies
       - run:
           name: Run Unit Tests
           command: ./gradlew --configure-on-demand -PdisablePreDex test
