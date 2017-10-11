@@ -72,7 +72,7 @@ jobs:
             TERM: dumb
       - run:
           name: Launch emulator
-          command: emulator -avd testEmulator -noaudio -memory 1024
+          command: emulator -avd testEmulator -noaudio -no-window -memory 1024
           background: false
           no_output_timeout: 20m
       - run:
