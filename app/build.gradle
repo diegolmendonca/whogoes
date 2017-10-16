@@ -60,6 +60,6 @@ dependencies {
     kapt 'com.google.dagger:dagger-compiler:2.11'
 
 
-    compile "org.jetbrains.kotlinx:kotlinx-coroutines-core:0.18"
-    compile "org.jetbrains.kotlinx:kotlinx-coroutines-android:0.18"
+    compile "org.jetbrains.kotlinx:kotlinx-coroutines-core:0.19.1"
+    compile "org.jetbrains.kotlinx:kotlinx-coroutines-android:0.19.1"
 }
