@@ -13,7 +13,6 @@ android {
         versionCode 13
         versionName "1.0.10"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        com.android.ddmlib.DdmPreferences.setTimeOut(120000)
     }
     buildTypes {
         release {
@@ -40,8 +39,8 @@ dependencies {
     }
     compile 'com.facebook.android:facebook-android-sdk:4.27.0'
 
-    compile 'com.squareup.okhttp3:okhttp:3.8.1'
-    compile 'com.squareup.okhttp3:logging-interceptor:3.8.1'
+    compile 'com.squareup.okhttp3:okhttp:3.9.0'
+    compile 'com.squareup.okhttp3:logging-interceptor:3.9.0'
 
     compile 'com.squareup.retrofit2:retrofit:2.3.0'
     compile 'com.squareup.retrofit2:converter-gson:2.3.0'
@@ -60,6 +59,6 @@ dependencies {
     kapt 'com.google.dagger:dagger-compiler:2.11'
 
 
-    compile "org.jetbrains.kotlinx:kotlinx-coroutines-core:0.19.1"
-    compile "org.jetbrains.kotlinx:kotlinx-coroutines-android:0.19.1"
+    compile "org.jetbrains.kotlinx:kotlinx-coroutines-core:0.19.2"
+    compile "org.jetbrains.kotlinx:kotlinx-coroutines-android:0.19.2"
 }

@@ -57,7 +57,7 @@ jobs:
             TERM: dumb
       - run:
           name: Run Unit Tests
-          command: ./gradlew --configure-on-demand -PdisablePreDex test
+          command: ./gradlew --configure-on-demand test
           environment:
             TERM: dumb
       - run:
@@ -84,7 +84,7 @@ jobs:
               adb shell input keyevent 82
       - run:
           name: Run Instrumented Tests
-          command: ./gradlew --configure-on-demand -PdisablePreDex connectedAndroidTest
+          command: ./gradlew --configure-on-demand connectedAndroidTest
           environment:
             TERM: dumb
       - store_artifacts:
