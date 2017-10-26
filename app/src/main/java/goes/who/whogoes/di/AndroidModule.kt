@@ -8,7 +8,6 @@ package goes.who.whogoes.di
 import android.app.Application
 import android.content.Context
 import com.google.gson.Gson
-import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import dagger.Module
 import dagger.Provides
 import goes.who.whogoes.service.request.EventRequestService
@@ -17,6 +16,7 @@ import goes.who.whogoes.service.response.AttendeeResponseService
 import goes.who.whogoes.service.response.EventResponseService
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
