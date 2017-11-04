@@ -10,17 +10,24 @@ import javax.inject.Singleton
 @Singleton
 class AttendeeResponseService {
 
-    fun processResponse(status: String, name: String, rawResponse: Example): List<Datum> {
+    fun processResponse(status: String, names: Set<String>, rawResponse: Example): List<Datum> {
 
-        val filtered = rawResponse.data.filter { x -> x.name.toUpperCase().contains(name.trim().toUpperCase()) }
+        val formattedSet = names.map { it.trim().toUpperCase() }.toSet()
 
-        val result = when (status) {
+
+        val filtered = rawResponse.data.filter { constainsTheName(formattedSet,it.name) }
+
+        val userStatus = when (status) {
             "attending/" -> Attending()
             "declined/" -> Declined()
             else -> Interested()
         }
 
-        return filtered.map { x -> x.copy(status = result) }
+        return filtered.map { x -> x.copy(status = userStatus) }
+    }
+
+    private fun constainsTheName(formattedSet: Set<String>, name:String): Boolean {
+      return formattedSet.map { name.toUpperCase().contains(it)}.any{it.equals(true)}
     }
 
 }

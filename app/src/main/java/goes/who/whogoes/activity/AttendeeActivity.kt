@@ -100,9 +100,14 @@ class AttendeeActivity : BasicActivity() {
     }
 
     private fun handleResponse(androidList: Example, status: String) {
-        val userName = intent.getStringExtra("name")
 
-        mAndroidArrayList = attendeeResponseService.processResponse(status, userName, androidList)
+
+        val listOfNames = listOf(intent.getStringExtra("name"),intent.getStringExtra("name2"),intent.getStringExtra("name3"))
+
+        val set = listOfNames.filter { !it.isNullOrEmpty() }.toSet()
+
+
+        mAndroidArrayList = attendeeResponseService.processResponse(status, set, androidList)
         val partialResultString = getString(R.string.partial_result, responseAdapter.getElements().size + mAndroidArrayList.size)
         title.text = partialResultString
         title.setTextColor(Color.RED)
@@ -114,14 +119,18 @@ class AttendeeActivity : BasicActivity() {
         if (!nextUri.isNullOrEmpty()) {
             loadJSON(nextUri.orEmpty(), status)
         } else {
-            latch = latch - 1
-            if (latch == 0) {
-                responseList.setVisibility(View.VISIBLE)
-                mProgressBar.setVisibility(View.GONE)
-                val finalResultString = getString(R.string.final_result, responseAdapter.getElements().size)
-                title.text = finalResultString
-                Toast.makeText(this, getString(R.string.search_finished), Toast.LENGTH_SHORT).show()
-            }
+            prepareForFinish()
+        }
+    }
+
+    private fun prepareForFinish() {
+        latch = latch - 1
+        if (latch == 0) {
+            responseList.setVisibility(View.VISIBLE)
+            mProgressBar.setVisibility(View.GONE)
+            val finalResultString = getString(R.string.final_result, responseAdapter.getElements().size)
+            title.text = finalResultString
+            Toast.makeText(this, getString(R.string.search_finished), Toast.LENGTH_SHORT).show()
         }
     }
 

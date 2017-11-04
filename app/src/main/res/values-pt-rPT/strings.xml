@@ -14,14 +14,14 @@
     <string name="facebook_event_name_error">Por favor, insira o nome do evento do Facebook</string>
     <string name="facebook_event_no_found">Nenhum evento encontrado com o nome:%1$s</string>
     <string name="internet_issues">Temnpo de Serviço expirado. Por favor, cheque sua conexão de internet e tente novamente</string>
-    <string name="user_name_error"> Por favor, insira o nome da pessoa a ser buscada</string>
+    <string name="user_name_error">" Por favor, insira o nome de ao menos uma pessoa a ser buscada"</string>
     <string name="interested"> interessado</string>
     <string name="declined"> declinado</string>
     <string name="attending"> confirmado</string>
     <string name="search"> Pesquisar</string>
     <string name="name"> Nome</string>
     <string name="event_by_name"> Ache evento por nome</string>
-    <string name="person_name"> Por favor, digite um nome</string>
+    <string name="person_name">Por favor, digite ate 3 nomes</string>
     <string name="profile_picture"> foto de perfil</string>
     <string name="step_1_of_3"> Passo 1 de 3 : Procure evento por nome</string>
     <string name="step_2_of_3"> Passo 2 de 3 : Selecione Evento</string>

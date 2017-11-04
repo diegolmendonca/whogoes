@@ -14,14 +14,14 @@
     <string name="facebook_event_name_error">Please input a Facebook event Name</string>
     <string name="facebook_event_no_found">No event found with the following name:%1$s</string>
     <string name="internet_issues">Service timed out. Please check your internet connection and try again</string>
-    <string name="user_name_error"> Please input a person name</string>
+    <string name="user_name_error"> Please input at least one person name</string>
     <string name="interested"> interested</string>
     <string name="declined"> declined</string>
     <string name="attending"> attending</string>
     <string name="search"> Search</string>
     <string name="name"> Name</string>
     <string name="event_by_name"> Search Event by Name</string>
-    <string name="person_name"> Please type a name</string>
+    <string name="person_name">Please type up to 3 names</string>
     <string name="profile_picture"> profile picture</string>
     <string name="step_1_of_3"> Step 1 of 3 : Search Event by Name</string>
     <string name="step_2_of_3"> Step 2 of 3 : Select Event</string>
